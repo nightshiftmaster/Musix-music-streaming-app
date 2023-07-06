@@ -70,7 +70,7 @@ const Searchbar = () => {
                 setResult("");
                 setInput("");
               }}
-              className="block text-base text-white p-4 hover:bg-fuchsia-400 rounded-md"
+              className="block text-base text-white p-4 hover:bg-sky-600 rounded-lg"
             >
               {item.term}
             </li>

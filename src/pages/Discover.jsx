@@ -16,10 +16,6 @@ const Discover = () => {
   const { data, isFetching, error } = useGetSongsByGenreQuery(
     genreListId || "POP"
   );
-  // const { data, isFetching, error } = useGetTopChartsQuery();
-  // const filteredData = data?.filter((song) =>
-  //   song?.hub?.hasOwnProperty("actions")
-  // );
 
   const genreTitle = genres.find(({ value }) => value === genreListId)?.title;
 
