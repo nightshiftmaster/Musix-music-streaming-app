@@ -30,8 +30,9 @@ const SongDetails = () => {
     dispatch(setActiveSong({ song, i, data }));
   };
 
-  if (isFetchingSongDetails || isFetchingRelatedSongsData) return;
-  <Loader title="Searching song details" />;
+  if (isFetchingSongDetails || isFetchingRelatedSongsData) {
+    return <Loader title="Searching song details" />;
+  }
 
   if (error) return <Error />;
 

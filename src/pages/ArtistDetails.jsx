@@ -1,24 +1,46 @@
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { DetailsHeader, Error, Loader, RelatedSongs } from "../components";
-import { useGetArtistDetailsQuery } from "../redux/services/shazamCore";
+import {
+  useGetArtistDetailsQuery,
+  useGetSongsBySearchQuery,
+} from "../redux/services/shazamCore";
+import { playPause, setActiveSong } from "../redux/features/playerSlice";
 
 const ArtistDetails = () => {
+  const dispatch = useDispatch();
   const { activeSong, isPlaying } = useSelector((state) => state.player);
 
   const { id: artistId } = useParams();
+
   const {
     data: artistData,
     isFetching: isFetchingArtistDetails,
     isError,
   } = useGetArtistDetailsQuery(artistId);
 
-  if (isFetchingArtistDetails) return;
-  <Loader title="Searching artist details" />;
+  const artist = artistData?.data[0];
 
-  if (isError) return <Error />;
+  const { data, isFetching, error } = useGetSongsBySearchQuery(
+    artist?.attributes.name
+  );
 
-  const artist = artistData.data[0];
+  if (isFetchingArtistDetails || isFetching) {
+    return <Loader title="Searching artist details" />;
+  }
+
+  if (isError || error) return <Error />;
+
+  const songs = data?.tracks?.hits?.map((song) => song.track);
+
+  const handlePauseClick = () => {
+    dispatch(playPause(false));
+  };
+
+  const handlePlayClick = (song, i) => {
+    dispatch(playPause(true));
+    dispatch(setActiveSong({ song, i, data }));
+  };
 
   return (
     <div className="flex flex-col">
@@ -27,7 +49,9 @@ const ArtistDetails = () => {
         isPlaying={isPlaying}
         activeSong={activeSong}
         artistId={artistId}
-        data={artist.views["top-songs"].data}
+        data={songs}
+        handlePauseClick={handlePauseClick}
+        handlePlayClick={handlePlayClick}
       />
     </div>
   );

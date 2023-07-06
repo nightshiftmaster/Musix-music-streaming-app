@@ -10,13 +10,11 @@ const Search = () => {
   const { activeSong, isPlaying } = useSelector((state) => state.player);
   const { data, isFetching, isError } = useGetSongsBySearchQuery(searchTerm);
 
-  console.log(data);
-
   const songs = data?.tracks?.hits?.map((song) => song.track);
 
-  if (isFetching) return <Loader title="Loading top charts" />;
+  if (isFetching) return <Loader title="Loading results" />;
 
-  if (isError) return <Error />;
+  if (isError) return <Error title="Artist not exists" />;
 
   return (
     <div className="flex flex-col">
