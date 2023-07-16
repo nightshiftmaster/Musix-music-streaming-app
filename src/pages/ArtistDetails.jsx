@@ -7,7 +7,7 @@ import {
 } from "../redux/services/shazamCore";
 import { playPause, setActiveSong } from "../redux/features/playerSlice";
 
-const ArtistDetails = () => {
+const ArtistDetails = ({ setLink, link }) => {
   const dispatch = useDispatch();
   const { activeSong, isPlaying } = useSelector((state) => state.player);
 
@@ -44,7 +44,12 @@ const ArtistDetails = () => {
 
   return (
     <div className="flex flex-col">
-      <DetailsHeader artistId={artistId} artistData={artist} />
+      <DetailsHeader
+        artistId={artistId}
+        artistData={artist}
+        setLink={setLink}
+        link={link}
+      />
       <RelatedSongs
         isPlaying={isPlaying}
         activeSong={activeSong}

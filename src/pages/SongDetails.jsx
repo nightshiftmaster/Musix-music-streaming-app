@@ -1,5 +1,4 @@
 import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { DetailsHeader, Error, Loader, RelatedSongs } from "../components";
 import { setActiveSong, playPause } from "../redux/features/playerSlice";
@@ -8,7 +7,7 @@ import {
   useGetRelatedSongsQuery,
 } from "../redux/services/shazamCore";
 
-const SongDetails = () => {
+const SongDetails = ({ setLink, link }) => {
   const dispatch = useDispatch();
   const { activeSong, isPlaying } = useSelector((state) => state.player);
   const { songid } = useParams();
@@ -38,7 +37,12 @@ const SongDetails = () => {
 
   return (
     <div className="flex flex-col">
-      <DetailsHeader artistId="" songData={songData}></DetailsHeader>
+      <DetailsHeader
+        artistId=""
+        songData={songData}
+        setLink={setLink}
+        link={link}
+      ></DetailsHeader>
       <div className="mb-10 ">
         <h2 className="text-white text-3xl font-bold">Lyrics</h2>
         <div className="mt-5">

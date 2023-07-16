@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import PlayPause from "./PlayPause";
 import { playPause, setActiveSong } from "../redux/features/playerSlice";
 
-const SongCard = ({ song, isPlaying, data, activeSong, i }) => {
+const SongCard = ({ song, isPlaying, data, activeSong, i, discover }) => {
   const dispatch = useDispatch();
   const handlePlayClick = () => {
     dispatch(setActiveSong({ song, data, i }));
@@ -14,7 +14,11 @@ const SongCard = ({ song, isPlaying, data, activeSong, i }) => {
   };
 
   return (
-    <div className="flex flex-col w-[250px] p-4 bg-white/5 rounded-lg cursor-pointer">
+    <div
+      className={`flex flex-col ${
+        discover ? "w-[180px] h-[250px]" : "w-[250px]"
+      }  p-4 bg-white/5 rounded-lg cursor-pointer`}
+    >
       <div className="relative w-30 h-56 group">
         <div
           className={`absolute inset-0 justify-center items-center bg-black bg-opacity-50 group-hover:flex ${
@@ -31,7 +35,11 @@ const SongCard = ({ song, isPlaying, data, activeSong, i }) => {
             handlePlay={handlePlayClick}
           />
         </div>
-        <img src={song.images?.coverart} alt="song_img" />
+        <img
+          src={song.images?.coverart}
+          alt="song_img"
+          className="w-full object-contain "
+        />
       </div>
       <div className="flex flex-col">
         <p className="font-semibold text-lg text-white truncate">

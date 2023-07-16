@@ -1,12 +1,22 @@
 import { useSelector } from "react-redux";
 import { Error, Loader, SongCard } from "../components";
 import { useGetTopChartsQuery } from "../redux/services/shazamCore";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { FreeMode } from "swiper";
+import { React, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
+import { logo } from "../assets";
+import _ from "lodash";
 
-import React from "react";
-
-const TopCharts = () => {
+const TopCharts = ({ link }) => {
   const { activeSong, isPlaying } = useSelector((state) => state.player);
   const { data, isFetching, isError } = useGetTopChartsQuery();
+
+  const divRef = useRef(null);
+
+  useEffect(() => {
+    divRef?.current?.scrollIntoView({ behavior: "smooth" });
+  }, [data]);
 
   if (isFetching) return <Loader title="Loading top charts" />;
 
@@ -14,12 +24,59 @@ const TopCharts = () => {
 
   return (
     <div className="flex flex-col">
-      <h2 className="font-bold text-3xl text-white text-left mt-4 mb-10">
+      <div ref={divRef}></div>
+      <div className="lg:hidden flex flex-col w-screen justify-center items-center ">
+        <Link to={`/`}>
+          <img
+            src={logo}
+            alt="logo"
+            className="ml-[111px] w-28 h-32 object-contain mr-[200px]"
+          />
+        </Link>
+      </div>
+      <h2
+        className="font-bold text-3xl text-white text-left w-full flex justify-between items-center
+    lg:flex-row flex-col mt-4 mb-8"
+      >
         Discover Top Charts
       </h2>
 
-      <div className="flex flex-wrap sm:justify-start justify-center gap-8">
-        {data?.map((song, i) => (
+      <div className="flex-col w-full md:hidden flex">
+        <div className="w-full justify-between items-center flex-col mt-4">
+          <Swiper
+            slidesPerView={2}
+            spaceBetween={50}
+            freeMode
+            centeredSlides
+            centeredSlidesBounds
+            modules={[FreeMode]}
+            className="mt-4"
+          >
+            {data?.map((song, i) => {
+              //   console.log(song.key);
+              return (
+                <SwiperSlide
+                  key={i}
+                  className="shadow-lg rounded-full animate-slideright"
+                >
+                  <SongCard
+                    key={i}
+                    song={song}
+                    i={i}
+                    isPlaying={isPlaying}
+                    activeSong={activeSong}
+                    data={data}
+                    discover="true"
+                  />
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
+        </div>
+      </div>
+
+      <div className="w-full justify-around items-center flex-wrap md:flex hidden gap-6 text-white">
+        {_.uniqBy(data, "key")?.map((song, i) => (
           <SongCard
             key={song.key}
             song={song}
