@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux";
 import { Route, Routes, Link } from "react-router-dom";
-import { logo } from "./assets";
 import { useState, useRef, useEffect } from "react";
 
 import { Searchbar, Sidebar, MusicPlayer, TopPlay } from "./components";
@@ -16,36 +15,42 @@ import {
 
 const App = () => {
   const [link, setLink] = useState(false);
+  const [load, setLoad] = useState(true);
+  const divRef = useRef(null);
 
-  // const divRef = useRef(null);
+  const LoaderList = () => {
+    if (load) {
+      return <Loader title="Loading data" />;
+    }
+    return;
+  };
+
   useEffect(() => {
     setTimeout(() => {
-      window.scrollTo(0, 0);
+      divRef?.current?.scrollIntoView({ top: 0, behavior: "smooth" });
+      setLoad(false);
     }, 1100);
     return;
   }, [link]);
 
   const { activeSong } = useSelector((state) => state.player);
   return (
-    <div className="flex relative">
+    <div className="flex relative h-screen">
       <Sidebar link={link} setLink={setLink} />
 
       {
         <div className="flex-1 flex flex-col bg-gradient-to-br from-black to-[#121286]">
-          <Searchbar />
+          <div ref={divRef}>
+            <Searchbar />
+          </div>
 
-          <div className="px-6 h-[calc(100vh-72px)] overflow-y-scroll hide-scrollbar flex xl:flex-row flex-col">
-            {/* <Link to={`/`}>
-            <img
-              src={logo}
-              alt="logo"
-              className="ml-[111px] w-28 h-32 object-contain md:hidden"
-            />
-          </Link> */}
-
+          <div className="px-6 h-[calc(100vh-72px)] overflow-x-hidden overflow-y-scroll hide-scrollbar flex xl:flex-row flex-col">
             <div className="flex-1 h-fit pb-40 lg:w-auto w-[calc(100vw-50px)]">
               <Routes>
-                <Route path="/" element={<Discover />} />
+                <Route
+                  path="/"
+                  element={<Discover link={link} setLink={setLink} />}
+                />
                 <Route path="/top-artists" element={<TopArtists />} />
                 <Route path="/top-charts" element={<TopCharts />} />
                 <Route path="/around-you" element={<AroundYou />} />
@@ -65,7 +70,7 @@ const App = () => {
             </div>
 
             <div className="xl:sticky relative top-0 h-fit">
-              <TopPlay />
+              <TopPlay link={link} />
             </div>
           </div>
         </div>

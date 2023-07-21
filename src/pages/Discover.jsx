@@ -5,11 +5,11 @@ import { selectGenreListId } from "../redux/features/playerSlice";
 import { useGetSongsByGenreQuery } from "../redux/services/shazamCore";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { logo } from "../assets";
 import { Link } from "react-router-dom";
 
-const Discover = ({ link }) => {
+const Discover = ({ link, setLink }) => {
   const dispatch = useDispatch();
   const { activeSong, isPlaying, genreListId } = useSelector(
     (state) => state.player
@@ -40,6 +40,7 @@ const Discover = ({ link }) => {
       <div className="lg:hidden flex flex-col w-screen justify-center items-center ">
         <Link to={`/`}>
           <img
+            onClick={() => setLink(!link)}
             src={logo}
             alt="logo"
             className="ml-[111px] w-28 h-32 object-contain mr-[200px]"
@@ -56,6 +57,7 @@ const Discover = ({ link }) => {
         <select
           onChange={(e) => {
             dispatch(selectGenreListId(e.target.value));
+            setLink(!link);
           }}
           value={genreListId || "Pop"}
           className="bg-black text-gray-300 p-3 text-sm rounded-lg outline-none lg :mt-0 mt-7"

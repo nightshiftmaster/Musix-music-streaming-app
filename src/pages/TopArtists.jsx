@@ -7,7 +7,7 @@ import _ from "lodash";
 
 import React from "react";
 
-const TopArtists = ({ link }) => {
+const TopArtists = ({ setLink, link }) => {
   const { data, isFetching, isError } = useGetTopChartsQuery();
 
   const divRef = useRef(null);
@@ -28,6 +28,7 @@ const TopArtists = ({ link }) => {
       <div className="lg:hidden flex flex-col w-screen justify-center items-center ">
         <Link to={`/`}>
           <img
+            onClick={() => setLink(!link)}
             src={logo}
             alt="logo"
             className="ml-[111px] w-28 h-32 object-contain mr-[200px]"

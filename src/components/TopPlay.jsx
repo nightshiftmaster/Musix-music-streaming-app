@@ -6,6 +6,7 @@ import { FreeMode } from "swiper";
 import PlayPause from "./PlayPause";
 import { playPause, setActiveSong } from "../redux/features/playerSlice";
 import { useGetTopChartsQuery } from "../redux/services/shazamCore";
+import { Error, Loader, SongCard } from "../components";
 
 import "swiper/css";
 import "swiper/css/free-mode";
@@ -20,7 +21,7 @@ const TopChartsCard = ({
   handlePlayClick,
 }) => {
   return (
-    <div className=" md:w-full  w-[calc(100vw-30px)] flex items-center hover:bg-[#4c426e] py-2 p-4 rounded-lg cursor-pointer mb-2">
+    <div className=" md:w-full  w-[calc(100vw-50px)] flex items-center hover:bg-[#4c426e] py-2 p-4 rounded-lg cursor-pointer mb-2">
       <h3 className="fot-bold text-base text-white mr-3">{i + 1}</h3>
       <Link to={`songs/${song.key}`}>
         <img
@@ -58,7 +59,7 @@ const TopChartsCard = ({
 
 const TopPlay = () => {
   const dispatch = useDispatch();
-  const { data } = useGetTopChartsQuery();
+  const { data, isFetching } = useGetTopChartsQuery();
   const { activeSong, isPlaying } = useSelector((state) => state.player);
   const topPlays = data?.slice(0, 15);
 
@@ -70,6 +71,10 @@ const TopPlay = () => {
   const handlePauseClick = () => {
     dispatch(playPause(false));
   };
+
+  if (isFetching) {
+    return <Loader title="Loading songs" />;
+  }
 
   return (
     <div className="xl:ml-6 ml-0 xl:mb-0 mb-6 flex-1 xl:max-w-[500px] max-w-full flex flex-col ">

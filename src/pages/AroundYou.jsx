@@ -10,7 +10,7 @@ import { logo } from "../assets";
 
 import React from "react";
 
-const AroundYou = ({ link }) => {
+const AroundYou = ({ setLink, link }) => {
   const [country, setCountry] = useState("");
   const [loading, setLoading] = useState(true);
   const { activeSong, isPlaying } = useSelector((state) => state.player);
@@ -46,6 +46,7 @@ const AroundYou = ({ link }) => {
       <div className="lg:hidden flex flex-col w-screen justify-center items-center ">
         <Link to={`/`}>
           <img
+            onClick={() => setLink(!link)}
             src={logo}
             alt="logo"
             className="ml-[111px] w-28 h-32 object-contain mr-[200px]"

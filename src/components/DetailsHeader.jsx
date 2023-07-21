@@ -8,17 +8,19 @@ const DetailsHeader = ({ artistId, artistData, songData, setLink, link }) => {
   useEffect(() => {
     divRef?.current?.scrollIntoView({ behavior: "smooth" });
     setLink(!link);
+    return;
   }, [songData, artistData]);
   return (
     <div className="relative w-full flex flex-col">
       <div ref={divRef}></div>
-      {/* <Link to={`/`}>
+      <Link to={`/`}>
         <img
+          onClick={() => setLink(!link)}
           src={logo}
           alt="logo"
           className="ml-[111px] w-28 h-32 object-contain sm:hidden mr-[230px]"
         />
-      </Link> */}
+      </Link>
       <div className="w-full bg-gradient-to-l from-transparent to-black sm:h-48 h-28">
         <div className="inset-0 flex items-center">
           <img
