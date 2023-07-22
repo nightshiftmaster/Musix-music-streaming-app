@@ -60,7 +60,7 @@ const Discover = ({ link, setLink }) => {
             setLink(!link);
           }}
           value={genreListId || "Pop"}
-          className="bg-black text-gray-300 p-3 text-sm rounded-lg outline-none lg :mt-0 mt-7"
+          className="bg-black text-gray-300 p-2 text-sm rounded-lg outline-none lg:mt-0 mt-8"
         >
           {genres.map((genre) => (
             <option key={genre.value} value={genre.value}>
