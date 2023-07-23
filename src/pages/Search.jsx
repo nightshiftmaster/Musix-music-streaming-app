@@ -31,19 +31,10 @@ const Search = ({ setLink, link }) => {
   return (
     <div className="flex flex-col">
       <div ref={divRef}></div>
-      <div className="lg:hidden flex flex-col w-screen justify-center items-center ">
-        <Link to={`/`}>
-          <img
-            onClick={() => setLink(!link)}
-            src={logo}
-            alt="logo"
-            className="ml-[111px] w-28 h-32 object-contain mr-[200px]"
-          />
-        </Link>
-      </div>
+      <div className="lg:hidden flex flex-col w-screen justify-center items-center "></div>
       <h2
         className="font-bold text-3xl text-white text-left w-full flex  items-center
-    lg:flex-row flex-col mt-4 mb-8"
+    lg:flex-row flex-col mt-7 mb-6"
       >
         Showing results for {"   "}
         <Link to={`/artists/${artistId}`}>

@@ -13,46 +13,40 @@ const SongBar = ({
   handlePlayClick,
 }) => {
   return (
-    <div
-      className={`w-full flex flex-row items-center hover:bg-[#4c426e] ${
-        activeSong?.title === song?.title ? "bg-[#4c426e]" : "bg-transparent"
-      } py-2 p-4 rounded-lg cursor-pointer mb-2`}
-    >
-      <h3 className="font-bold text-base text-white mr-3">{i + 1}.</h3>
-      <div className="flex-1 flex flex-row justify-between items-center">
+    <div className="md:w-full w-[calc(100vw-50px)] flex items-center hover:bg-[#4c426e] py-1 p-1 rounded-lg cursor-pointer mb-1">
+      <h3 className="w-4 text-right font-bold text-base text-white mr-3">
+        {i + 1}
+      </h3>
+      <Link to={`songs/${song.key}`}>
         <img
           className="w-20 h-20 rounded-lg"
-          src={song?.images?.coverart}
+          src={song?.images.coverart}
           alt={song?.title}
         />
-        <div className="flex-1 flex flex-col justify-center mx-3">
-          {
-            <Link to={`/songs/${song.key}`}>
-              <p className="text-lg font-bold text-white">{song?.title}</p>
-            </Link>
-          }
-          <p className="text-base text-gray-300 mt-1">
-            <Link
-              to={
-                song?.artists
-                  ? `/artists/${song?.artists[0]?.adamid}`
-                  : "/top-artists"
-              }
-            >
+      </Link>
+      <div className="flex-1 flex-col items-center justify-start overflow-hidden">
+        <div className="flex-1 flex-col items-center justify-start mx-3">
+          <Link to={`songs/${song.key}`}>
+            <p className="font-semibold md:text-lg text-md text-white truncate">
+              {song?.title}
+            </p>
+          </Link>
+        </div>
+        <div className=" flex-1 flex-col items-center justify-start mx-3">
+          <Link to={`artists/${song?.artists[0].adamid}`}>
+            <p className="text-sm text-gray-400 mt-1 truncate">
               {song?.subtitle}
-            </Link>
-          </p>
+            </p>
+          </Link>
         </div>
       </div>
-      {
-        <PlayPause
-          isPlaying={isPlaying}
-          activeSong={activeSong}
-          song={song}
-          handlePause={handlePauseClick}
-          handlePlay={() => handlePlayClick(song, i)}
-        />
-      }
+      <PlayPause
+        isPlaying={isPlaying}
+        activeSong={activeSong}
+        song={song}
+        handlePause={handlePauseClick}
+        handlePlay={handlePlayClick}
+      />
     </div>
   );
 };

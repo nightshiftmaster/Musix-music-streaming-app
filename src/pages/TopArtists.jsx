@@ -25,24 +25,15 @@ const TopArtists = ({ setLink, link }) => {
   return (
     <div className="flex flex-col">
       <div ref={divRef}></div>
-      <div className="lg:hidden flex flex-col w-screen justify-center items-center ">
-        <Link to={`/`}>
-          <img
-            onClick={() => setLink(!link)}
-            src={logo}
-            alt="logo"
-            className="ml-[111px] w-28 h-32 object-contain mr-[200px]"
-          />
-        </Link>
-      </div>
+      <div className="lg:hidden flex flex-col w-screen justify-center items-center "></div>
       <h2
-        className="font-bold text-3xl text-white text-left w-full flex justify-between items-center
-    lg:flex-row flex-col mt-4 mb-8 "
+        className="font-bold md:text-3xl text-2xl  text-white text-left w-full flex justify-between items-center
+    lg:flex-row flex-col mt-7 mb-6"
       >
         Discover Top Artists
       </h2>
 
-      <div className="flex flex-wrap justify-around gap-8">
+      <div className="flex flex-wrap justify-around gap-8 mt-2">
         {_.uniqBy(data, "key")?.map((track, i) => (
           <ArtistCard key={track.key} track={track} />
         ))}

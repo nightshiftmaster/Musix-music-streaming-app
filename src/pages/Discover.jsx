@@ -37,21 +37,11 @@ const Discover = ({ link, setLink }) => {
   return (
     <div className="flex flex-col">
       <div ref={divRef}></div>
-      <div className="lg:hidden flex flex-col w-screen justify-center items-center ">
-        <Link to={`/`}>
-          <img
-            onClick={() => setLink(!link)}
-            src={logo}
-            alt="logo"
-            className="ml-[111px] w-28 h-32 object-contain mr-[200px]"
-          />
-        </Link>
-      </div>
       <div
-        className="w-[calc(100%-10px)] flex justify-between items-center
-        lg:flex-row flex-col mt-4 mb-8"
+        className="w-full flex justify-between items-center
+        lg:flex-row mb-4"
       >
-        <h2 className="font-bold text-3xl text-white text-left">
+        <h2 className="font-bold  md:text-3xl mt-7 text-2xl  text-white text-left">
           Discover {genreTitle}
         </h2>
         <select
@@ -60,7 +50,7 @@ const Discover = ({ link, setLink }) => {
             setLink(!link);
           }}
           value={genreListId || "Pop"}
-          className="bg-black text-gray-300 p-2 text-sm rounded-lg outline-none lg:mt-0 mt-8"
+          className="bg-black  text-gray-300 p-2 text-sm rounded-lg outline-none lg:mt-0 mt-8"
         >
           {genres.map((genre) => (
             <option key={genre.value} value={genre.value}>
@@ -84,10 +74,10 @@ const Discover = ({ link, setLink }) => {
         })}
       </div>
       <div className="flex-col w-full md:hidden flex">
-        <div className="w-full justify-between items-center flex-col mt-4">
+        <div className="w-full justify-between items-center flex-col">
           <Swiper
             slidesPerView={2}
-            spaceBetween={50}
+            spaceBetween={40}
             freeMode
             centeredSlides
             centeredSlidesBounds

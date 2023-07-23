@@ -25,25 +25,16 @@ const TopCharts = ({ setLink, link }) => {
   return (
     <div className="flex flex-col">
       <div ref={divRef}></div>
-      <div className="lg:hidden flex flex-col w-screen justify-center items-center ">
-        <Link to={`/`}>
-          <img
-            onClick={() => setLink(!link)}
-            src={logo}
-            alt="logo"
-            className="ml-[111px] w-28 h-32 object-contain mr-[200px]"
-          />
-        </Link>
-      </div>
+      <div className="lg:hidden flex flex-col w-screen justify-center items-center "></div>
       <h2
-        className="font-bold text-3xl text-white text-left w-full flex justify-between items-center
-    lg:flex-row flex-col mt-4 mb-8"
+        className="font-bold md:text-3xl text-2xl  text-white text-left w-full flex justify-between items-center
+    lg:flex-row flex-col mt-7 mb-3"
       >
         Discover Top Charts
       </h2>
 
       <div className="flex-col w-full md:hidden flex">
-        <div className="w-full justify-between items-center flex-col mt-4">
+        <div className="w-full justify-between items-center flex-col mt-1">
           <Swiper
             slidesPerView={2}
             spaceBetween={50}

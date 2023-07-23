@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { Route, Routes, Link } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
 
 import { Searchbar, Sidebar, MusicPlayer, TopPlay } from "./components";
@@ -15,20 +15,11 @@ import {
 
 const App = () => {
   const [link, setLink] = useState(false);
-  const [load, setLoad] = useState(true);
   const divRef = useRef(null);
-
-  const LoaderList = () => {
-    if (load) {
-      return <Loader title="Loading data" />;
-    }
-    return;
-  };
 
   useEffect(() => {
     setTimeout(() => {
       divRef?.current?.scrollIntoView({ top: 0, behavior: "smooth" });
-      setLoad(false);
     }, 1100);
     return;
   }, [link]);
@@ -41,9 +32,8 @@ const App = () => {
         <div ref={divRef}>
           <Searchbar />
         </div>
-
         <div className="px-6 h-[calc(100vh-72px)] overflow-x-hidden overflow-y-scroll hide-scrollbar flex xl:flex-row flex-col">
-          <div className="flex-1 h-fit pb-40 lg:w-auto w-[calc(100vw-50px)]">
+          <div className="flex-1 h-fit pb-10 lg:w-auto w-[calc(100vw-50px)]">
             <Routes>
               <Route
                 path="/"

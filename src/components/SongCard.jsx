@@ -16,8 +16,8 @@ const SongCard = ({ song, isPlaying, data, activeSong, i, discover }) => {
   return (
     <div
       className={`flex flex-col ${
-        discover ? "w-[180px] h-[250px]" : "w-[250px]"
-      }  p-4 bg-white/5 rounded-lg cursor-pointer`}
+        discover ? "w-[170px] h-[230px]" : "w-[250px]"
+      }  p-3 bg-white/5 rounded-lg cursor-pointer`}
     >
       <div className="relative w-30 h-56 group">
         <div
@@ -42,10 +42,10 @@ const SongCard = ({ song, isPlaying, data, activeSong, i, discover }) => {
         />
       </div>
       <div className="flex flex-col">
-        <p className="font-semibold text-lg text-white truncate">
+        <p className="font-semibold lg:text-lg text-white truncate mt-2 text-md">
           <Link to={`/songs/${song?.key}`}>{song.title}</Link>
         </p>
-        <p className="text-sm truncate text-gray-300 mt-1">
+        <p className="text-sm truncate text-gray-400 mt-1">
           <Link
             to={
               song?.artists
