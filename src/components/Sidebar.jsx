@@ -50,7 +50,7 @@ const Sidebar = ({ link, setLink }) => {
           mobileMenuOpen={mobileMenuOpen}
         />
       </div>
-      <div className="absolute lg:hidden block top-6 right-3">
+      <div className="z-40 absolute lg:hidden block top-6 right-2">
         {mobileMenuOpen ? (
           <RiCloseLine
             className="w-6 h6 text-white mr-2"
@@ -64,7 +64,7 @@ const Sidebar = ({ link, setLink }) => {
         )}
       </div>
       <div
-        className={`fixed h-screen w-2/3 bg-gradient-to-tl from-white/10 to-[#483d8b] backdrop-blur-lg z-30 p-6 lg:hidden smooth-transition ${
+        className={`fixed h-screen w-2/3 bg-gradient-to-tl from-white/10 to-[#483d8b] backdrop-blur-lg z-50 p-6 lg:hidden smooth-transition ${
           mobileMenuOpen ? "left-0" : "-left-full"
         }`}
       >

@@ -21,9 +21,9 @@ const Discover = ({ link, setLink }) => {
 
   const divRef = useRef(null);
 
-  useEffect(() => {
-    divRef?.current?.scrollIntoView({ behavior: "smooth" });
-  }, [data]);
+  // useEffect(() => {
+  //   divRef?.current?.scrollIntoView({ behavior: "smooth" });
+  // }, [data]);
 
   const genreTitle = genres.find(({ value }) => value === genreListId)?.title;
 
@@ -39,9 +39,9 @@ const Discover = ({ link, setLink }) => {
       <div ref={divRef}></div>
       <div
         className="w-full flex justify-between items-center
-        lg:flex-row mb-4"
+        lg:flex-row mb-2"
       >
-        <h2 className="font-bold  md:text-3xl mt-7 text-2xl  text-white text-left">
+        <h2 className="font-bold  md:text-3xl mt-4 text-2xl ml-0  text-white text-left">
           Discover {genreTitle}
         </h2>
         <select
@@ -50,7 +50,7 @@ const Discover = ({ link, setLink }) => {
             setLink(!link);
           }}
           value={genreListId || "Pop"}
-          className="bg-black  text-gray-300 p-2 text-sm rounded-lg outline-none lg:mt-0 mt-8"
+          className="bg-black  text-gray-300 p-2 text-sm rounded-lg outline-none lg:mt-0 mt-4"
         >
           {genres.map((genre) => (
             <option key={genre.value} value={genre.value}>

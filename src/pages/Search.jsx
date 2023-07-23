@@ -16,7 +16,7 @@ const Search = ({ setLink, link }) => {
   const { data, isFetching, isError } = useGetSongsBySearchQuery(searchTerm);
 
   useEffect(() => {
-    divRef?.current?.scrollIntoView({ behavior: "smooth" });
+    // divRef?.current?.scrollIntoView({ behavior: "smooth" });
     setLink(!link);
   }, [data]);
 
@@ -34,7 +34,7 @@ const Search = ({ setLink, link }) => {
       <div className="lg:hidden flex flex-col w-screen justify-center items-center "></div>
       <h2
         className="font-bold text-3xl text-white text-left w-full flex  items-center
-    lg:flex-row flex-col mt-7 mb-6"
+    lg:flex-row flex-col mt-5 mb-6"
       >
         Showing results for {"   "}
         <Link to={`/artists/${artistId}`}>

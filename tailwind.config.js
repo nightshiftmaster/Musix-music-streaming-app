@@ -7,6 +7,7 @@ module.exports = {
         black: "#191624",
       },
       animation: {
+        shinyanimation: "shining element",
         slideup: "slideup 1s ease-in-out",
         slidedown: "slidedown 1s ease-in-out",
         slideleft: "slideleft 1s ease-in-out",
@@ -15,6 +16,10 @@ module.exports = {
         slowfade: "slowfade 2.2s ease-in-out",
       },
       keyframes: {
+        shinyanimation: {
+          from: `bg-top`,
+          to: `bg-bottom`,
+        },
         slowfade: {
           from: { opacity: 0 },
           to: { opacity: 1 },

@@ -14,9 +14,9 @@ const TopCharts = ({ setLink, link }) => {
 
   const divRef = useRef(null);
 
-  useEffect(() => {
-    divRef?.current?.scrollIntoView({ behavior: "smooth" });
-  }, [data]);
+  // useEffect(() => {
+  //   divRef?.current?.scrollIntoView({ behavior: "smooth" });
+  // }, [data]);
 
   if (isFetching) return <Loader title="Loading top charts" />;
 
@@ -28,7 +28,7 @@ const TopCharts = ({ setLink, link }) => {
       <div className="lg:hidden flex flex-col w-screen justify-center items-center "></div>
       <h2
         className="font-bold md:text-3xl text-2xl  text-white text-left w-full flex justify-between items-center
-    lg:flex-row flex-col mt-7 mb-3"
+    lg:flex-row flex-col mt-5 mb-1"
       >
         Discover Top Charts
       </h2>

@@ -18,9 +18,9 @@ const AroundYou = ({ setLink, link }) => {
 
   const divRef = useRef(null);
 
-  useEffect(() => {
-    divRef?.current?.scrollIntoView({ behavior: "smooth" });
-  }, [link]);
+  // useEffect(() => {
+  //   divRef?.current?.scrollIntoView({ behavior: "smooth" });
+  // }, [link]);
 
   useEffect(() => {
     axios
@@ -46,7 +46,7 @@ const AroundYou = ({ setLink, link }) => {
       <div className="lg:hidden flex flex-col w-screen justify-center items-center "></div>
       <h2
         className="font-bold md:text-3xl text-2xl  text-white text-left w-full flex justify-between items-center
-    lg:flex-row flex-col mt-7 mb-2"
+    lg:flex-row flex-col mt-5 mb-1"
       >
         {`Around You ${country}`}
       </h2>

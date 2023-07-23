@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Link } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
+import { logo } from "./assets";
 
 import { Searchbar, Sidebar, MusicPlayer, TopPlay } from "./components";
 import {
@@ -13,27 +14,45 @@ import {
   TopCharts,
 } from "./pages";
 
+const Header = () => {
+  return (
+    <div className="lg:hidden flex flex-row w-[110px] justify-start items-center ml-[7px]">
+      <Link to={`/`}>
+        <img
+          onClick={() => setLink(!link)}
+          src={logo}
+          alt="logo"
+          className="w-20 h-16 object-contain ml-3"
+        />
+      </Link>
+    </div>
+  );
+};
 const App = () => {
   const [link, setLink] = useState(false);
+
   const divRef = useRef(null);
 
   useEffect(() => {
     setTimeout(() => {
       divRef?.current?.scrollIntoView({ top: 0, behavior: "smooth" });
-    }, 1100);
-    return;
+    }, 100);
+    clearTimeout();
   }, [link]);
 
   const { activeSong } = useSelector((state) => state.player);
   return (
-    <div className="flex relative h-screen">
+    <div className="flex">
       <Sidebar link={link} setLink={setLink} />
-      <div className="flex-1 flex flex-col bg-gradient-to-br from-black to-[#121286]">
-        <div ref={divRef}>
-          <Searchbar />
-        </div>
-        <div className="px-6 h-[calc(100vh-72px)] overflow-x-hidden overflow-y-scroll hide-scrollbar flex xl:flex-row flex-col">
-          <div className="flex-1 h-fit pb-10 lg:w-auto w-[calc(100vw-50px)]">
+      <div
+        ref={divRef}
+        className="flex-1 flex flex-col bg-gradient-to-br from-black to-[#121286]"
+      >
+        <Header />
+
+        <Searchbar link={link} setLink={setLink} />
+        <div className="px-6 md:h-[calc(100vh-72px)] overflow-x-hidden overflow-y-scroll hide-scrollbar flex xl:flex-row flex-col">
+          <div className="flex-1 h-fit pb-8 lg:w-auto w-[calc(100vw-50px)]">
             <Routes>
               <Route
                 path="/"
@@ -62,6 +81,7 @@ const App = () => {
           </div>
         </div>
       </div>
+
       {activeSong?.title && (
         <div className="fixed h-28 bottom-0 left-0 right-0 flex animate-slideup bg-gradient-to-br from-white/10 to-[#2a2a80] backdrop-blur-lg rounded-t-3xl z-10">
           <MusicPlayer />
