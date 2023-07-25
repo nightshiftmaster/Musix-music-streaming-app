@@ -14,20 +14,6 @@ import {
   TopCharts,
 } from "./pages";
 
-const Header = () => {
-  return (
-    <div className="lg:hidden flex flex-row w-[110px] justify-start items-center ml-[7px]">
-      <Link to={`/`}>
-        <img
-          onClick={() => setLink(!link)}
-          src={logo}
-          alt="logo"
-          className="w-20 h-16 object-contain ml-3"
-        />
-      </Link>
-    </div>
-  );
-};
 const App = () => {
   const [link, setLink] = useState(false);
 
@@ -42,17 +28,26 @@ const App = () => {
 
   const { activeSong } = useSelector((state) => state.player);
   return (
-    <div className="flex">
+    <div className="flex relative">
       <Sidebar link={link} setLink={setLink} />
       <div
         ref={divRef}
-        className="flex-1 flex flex-col bg-gradient-to-br from-black to-[#121286]"
+        className="flex-1 flex flex-col h-full bg-gradient-to-br from-black to-[#121286]"
       >
-        <Header />
+        <div className="lg:hidden flex flex-row w-[110px] justify-start items-center ml-[7px]">
+          <Link to={`/`}>
+            <img
+              onClick={() => setLink(!link)}
+              src={logo}
+              alt="logo"
+              className="w-20 h-16 object-contain ml-3"
+            />
+          </Link>
+        </div>
 
         <Searchbar link={link} setLink={setLink} />
         <div className="px-6 md:h-[calc(100vh-72px)] overflow-x-hidden overflow-y-scroll hide-scrollbar flex xl:flex-row flex-col">
-          <div className="flex-1 h-fit pb-8 lg:w-auto w-[calc(100vw-50px)]">
+          <div className="flex-1 h-fit pb-9 lg:w-auto w-[calc(100vw-50px)]">
             <Routes>
               <Route
                 path="/"
@@ -77,7 +72,7 @@ const App = () => {
           </div>
 
           <div className="xl:sticky relative top-0 h-fit">
-            <TopPlay link={link} />
+            <TopPlay link={link} setLink={setLink} />
           </div>
         </div>
       </div>

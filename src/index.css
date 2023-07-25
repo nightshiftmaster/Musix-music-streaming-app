@@ -2,6 +2,43 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --duration: 3s;
+  --easing: linear;
+  --delay: 0s;
+}
+
+@keyframes shine {
+  80%,
+  100% {
+    transform: translateX(1000%);
+  }
+}
+
+.shine-effect {
+  color: white;
+  overflow: hidden;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 100%;
+    color: rgba(255, 255, 255, 0);
+    background-image: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0) 25%,
+      rgba(255, 255, 255, 0.5) 50%,
+      rgba(255, 255, 255, 0) 75%
+    );
+    transform: skewX(-70deg) translateX(-100%);
+    animation: var(--duration) var(--easing) var(--delay) infinite forwards
+      shine;
+  }
+}
+
 /* Active Navigation Link */
 .active {
   @apply text-cyan-500;

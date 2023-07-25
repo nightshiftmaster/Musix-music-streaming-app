@@ -36,12 +36,11 @@ const Discover = ({ link, setLink }) => {
 
   return (
     <div className="flex flex-col">
-      <div ref={divRef}></div>
       <div
-        className="w-full flex justify-between items-center
-        lg:flex-row mb-2"
+        className="w-full mb-3 flex justify-between items-center
+        lg:flex-row md:mb-10 mt-6"
       >
-        <h2 className="font-bold  md:text-3xl mt-4 text-2xl ml-0  text-white text-left">
+        <h2 className="font-bold md:text-3xl text-2xl ml-0   text-white text-left">
           Discover {genreTitle}
         </h2>
         <select
@@ -50,7 +49,7 @@ const Discover = ({ link, setLink }) => {
             setLink(!link);
           }}
           value={genreListId || "Pop"}
-          className="bg-black  text-gray-300 p-2 text-sm rounded-lg outline-none lg:mt-0 mt-4"
+          className="bg-black  text-gray-300 p-2 text-sm rounded-lg outline-none"
         >
           {genres.map((genre) => (
             <option key={genre.value} value={genre.value}>

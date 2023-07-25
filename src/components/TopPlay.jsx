@@ -59,10 +59,10 @@ const TopChartsCard = ({
   );
 };
 
-const TopPlay = () => {
+const TopPlay = ({ link, setLink }) => {
   const dispatch = useDispatch();
   const { data, isFetching } = useGetTopChartsQuery();
-  const { activeSong, isPlaying } = useSelector((state) => state.player);
+  const { activeSong, isPlaying, error } = useSelector((state) => state.player);
   const topPlays = data?.slice(0, 15);
 
   const handlePlayClick = (song, i) => {
@@ -78,13 +78,22 @@ const TopPlay = () => {
     return <Loader title="Loading songs" />;
   }
 
+  if (error) {
+    return <Error />;
+  }
+
   return (
     <div className="xl:ml-6 ml-0 xl:mb-0 mb-6 flex-1 xl:max-w-[500px] max-w-full flex flex-col ">
       <div className="w-full flex flex-col mb-4">
         <div className="flex flex-row justify-between items-center mb-2">
           <h2 className="text-white font-bold text-2">Top Artists</h2>
           <Link to="/top-artists">
-            <p className="text-gray-300 text-base cursor-pointer">See more</p>
+            <p
+              onClick={() => setLink(!link)}
+              className="text-gray-300 text-base cursor-pointer"
+            >
+              See more
+            </p>
           </Link>
         </div>
         <Swiper
@@ -110,14 +119,27 @@ const TopPlay = () => {
                 />
               </Link>
             </SwiperSlide>
-          ))}
+          )) || (
+            <div className="flex">
+              {[1, 2, 3, 4].map((song, i) => (
+                <div className="shadow-lg rounded-full animate-slideright">
+                  <div className="bg-slate-400 animate-pulse h-16 w-16 rounded-full m-2"></div>
+                </div>
+              ))}
+            </div>
+          )}
         </Swiper>
       </div>
       <div className="sm:w-full w-[[calc(100%-400px)]]  flex flex-col">
         <div className="flex flex-row justify-between items-center mt-5 mb-2">
           <h2 className="text-white font-bold text-2">Top Charts</h2>
           <Link to="/top-charts">
-            <p className="text-gray-300 text-base cursor-pointer">See more</p>
+            <p
+              onClick={() => setLink(!link)}
+              className="text-gray-300 text-base cursor-pointer"
+            >
+              See more
+            </p>
           </Link>
         </div>
         <div className="mt-4 flex flex-col gap-1 xl:h-screen xl:pb-80 overflow-x-hidden overflow-y-scroll hide-scrollbar">
@@ -131,7 +153,15 @@ const TopPlay = () => {
               handlePauseClick={handlePauseClick}
               handlePlayClick={() => handlePlayClick(song, i)}
             />
-          ))}
+          )) || (
+            <div className="flex flex-col ">
+              {[1, 2, 3, 4].map((song, i) => (
+                <div className="shadow-lg rounded-full animate-slideright">
+                  <div className="bg-slate-400 animate-pulse h-16 w-26 rounded-md m-2"></div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </div>

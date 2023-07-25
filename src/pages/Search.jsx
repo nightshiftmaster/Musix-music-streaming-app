@@ -30,15 +30,15 @@ const Search = ({ setLink, link }) => {
 
   return (
     <div className="flex flex-col">
-      <div ref={divRef}></div>
-      <div className="lg:hidden flex flex-col w-screen justify-center items-center "></div>
       <h2
-        className="font-bold text-3xl text-white text-left w-full flex  items-center
-    lg:flex-row flex-col mt-5 mb-6"
+        className="font-bold text-2xl text-white text-left w-full items-center flex-col
+    xl:flex-row flex mt-6 mb-10"
       >
         Showing results for {"   "}
         <Link to={`/artists/${artistId}`}>
-          <span className="ml-[8px] font-black italic">{searchTerm}</span>
+          <span className="ml-[7px] hover:underline text-2xl italic">
+            {searchTerm}
+          </span>
         </Link>
       </h2>
 

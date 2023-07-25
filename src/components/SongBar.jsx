@@ -45,7 +45,7 @@ const SongBar = ({
         activeSong={activeSong}
         song={song}
         handlePause={handlePauseClick}
-        handlePlay={handlePlayClick}
+        handlePlay={() => handlePlayClick(song, i)}
       />
     </div>
   );

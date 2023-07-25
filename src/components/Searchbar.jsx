@@ -52,6 +52,10 @@ const Searchbar = ({ link, setLink }) => {
   }, [input]);
 
   const AutocompleteCard = () => {
+    if (input.length < 2) {
+      setOpen(false);
+      return;
+    }
     return (
       <div
         onClick={() => {
@@ -60,7 +64,7 @@ const Searchbar = ({ link, setLink }) => {
         }}
       >
         <ul
-          className={`absolute z-10 max-w-sm rounded overflow-hidden shadow-lg backdrop-blur-md bg-white/1 cursor-pointer ${
+          className={`absolute z-0 max-w-sm rounded overflow-hidden shadow-lg backdrop-blur-xl cursor-pointer ${
             isOpen ? "visible" : "invisible"
           }`}
         >
@@ -83,35 +87,38 @@ const Searchbar = ({ link, setLink }) => {
   };
 
   return (
-    <div className="box-content ml-3 mr-4 lg:relative sticky shadow-2xl z-30 lg:bg-transparent lg:mt-2 mb-2 bg-gray-100 top-0 rounded-md h-[50px] flex flex-row justify-start items-center">
-      <form
-        autoComplete="off"
-        onSubmit={handleSubmit}
-        className=" text-gray-500 focus-within:text-gray-600"
-      >
-        <label htmlFor="search-field" className="sr-only">
-          Search all songs
-        </label>
-        <div className="flex flex-row justify-start items-center">
-          <FiSearch className="w-6 h-7 ml-3" />
-          <input
-            ref={currRef}
-            id="search-field"
-            placeholder="Search music"
-            value={input}
-            onChange={async (e) => {
-              setInput(e.target.value);
-            }}
-            className="flex-1 bg-transparent border-none outline-none placeholder-gray-500 text-md text-gray-500 p-3"
-          />
-          <HiOutlineHome
-            onClick={() => setLink(!link)}
-            className="absolute right-3 w-5 h-7 lg:invisible"
-          />
-        </div>
-        {null || <AutocompleteCard />}
-      </form>
-    </div>
+    <>
+      <div className="w-screen sticky xl:w-[calc(100vw-800px)] lg:w-[calc(100vw-250px)] bg-gradient-to-r from-black to-[#1d1d5b] lg:mt-2 mb-2  top-0 rounded-xl h-[50px] flex flex-row justify-start items-center z-40">
+        <div className="w-screen xl:w-[calc(100vw-800px)] h-10 shine-effect bg-transparent absolute"></div>
+        <form
+          autoComplete="off"
+          onSubmit={handleSubmit}
+          className=" text-gray-200 focus-within:text-gray-400 "
+        >
+          <label htmlFor="search-field" className="sr-only">
+            Search all songs
+          </label>
+          <div className="flex flex-row justify-start items-center ">
+            <FiSearch className="w-6 h-7 ml-4" />
+            <input
+              ref={currRef}
+              id="search-field"
+              placeholder="Search music"
+              value={input}
+              onChange={async (e) => {
+                setInput(e.target.value);
+              }}
+              className="flex-1 w-[calc(100vw-90px)] bg-transparent animate-pulse bg-green single-element border-none outline-none placeholder-gray-300  lg:placeholder-gray-300 text-md text-gray-300 p-3"
+            />
+            <HiOutlineHome
+              onClick={() => setLink(!link)}
+              className="absolute right-4 w-5 h-7 lg:invisible"
+            />
+          </div>
+          {null || <AutocompleteCard />}
+        </form>
+      </div>
+    </>
   );
 };
 

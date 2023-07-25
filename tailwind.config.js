@@ -6,6 +6,12 @@ module.exports = {
       colors: {
         black: "#191624",
       },
+      plugins: {
+        "postcss-import": {},
+        "tailwindcss/nesting": {},
+        tailwindcss: {},
+        autoprefixer: {},
+      },
       animation: {
         shinyanimation: "shining element",
         slideup: "slideup 1s ease-in-out",
