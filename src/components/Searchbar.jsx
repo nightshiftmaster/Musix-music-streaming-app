@@ -88,8 +88,8 @@ const Searchbar = ({ link, setLink }) => {
 
   return (
     <>
-      <div className="w-screen sticky xl:w-[calc(100vw-800px)] lg:w-[calc(100vw-250px)] bg-gradient-to-r from-black to-[#1d1d5b] lg:mt-2 mb-2  top-0 rounded-xl h-[50px] flex flex-row justify-start items-center z-40">
-        <div className="w-screen xl:w-[calc(100vw-800px)] h-10 shine-effect bg-transparent absolute"></div>
+      <div className="w-screen  sticky xl:w-[calc(100vw-800px)] lg:w-[calc(100vw-250px)] bg-gradient-to-r from-black to-[#1d1d5b] lg:mt-2 mb-2  top-0 rounded-xl h-[50px] flex flex-row justify-start items-center z-40">
+        <div className="w-screen xl:w-[calc(100vw-800px)] h-12 shine-effect bg-transparent absolute"></div>
         <form
           autoComplete="off"
           onSubmit={handleSubmit}

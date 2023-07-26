@@ -18,6 +18,7 @@
 .shine-effect {
   color: white;
   overflow: hidden;
+  border-radius: 10px;
 
   &::after {
     content: "";

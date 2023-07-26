@@ -31,12 +31,12 @@ const Search = ({ setLink, link }) => {
   return (
     <div className="flex flex-col">
       <h2
-        className="font-bold text-2xl text-white text-left w-full items-center flex-col
-    xl:flex-row flex mt-6 mb-10"
+        className="font-bold text-2xl mb-7 text-white text-left w-full items-center flex-col
+    xl:flex-row flex mt-6 md:mb-10"
       >
         Showing results for {"   "}
         <Link to={`/artists/${artistId}`}>
-          <span className="ml-[7px] hover:underline text-2xl italic">
+          <span className="ml-[7px] underline text-2xl italic">
             {searchTerm}
           </span>
         </Link>

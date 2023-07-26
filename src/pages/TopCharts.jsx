@@ -25,8 +25,8 @@ const TopCharts = ({ setLink, link }) => {
   return (
     <div className="flex flex-col">
       <h2
-        className="font-bold md:text-3xl text-2xl  text-white text-left w-full flex justify-between items-center
-    lg:flex-row flex-col mt-6 mb-10"
+        className="font-bold md:text-3xl text-2xl mb-3 text-white text-left w-full flex justify-between items-center
+    lg:flex-row flex-col mt-6 md:mb-10"
       >
         Discover Top Charts
       </h2>

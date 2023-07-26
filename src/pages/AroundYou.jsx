@@ -14,6 +14,7 @@ const AroundYou = ({ setLink, link }) => {
   const [country, setCountry] = useState("");
   const [loading, setLoading] = useState(true);
   const { activeSong, isPlaying } = useSelector((state) => state.player);
+  console.log(country);
   const { data, isFetching, isError } = useGetSongsByCountryQuery(country);
 
   const divRef = useRef(null);
@@ -23,18 +24,19 @@ const AroundYou = ({ setLink, link }) => {
   // }, [link]);
 
   useEffect(() => {
-    axios
-      .get(
-        `https://geo.ipify.org/api/v2/country?apiKey=at_qcVltM1mkAAQIqQvSncbmkJq84sBN`
-      )
-      .then((res) => {
-        return setCountry(res?.data?.location?.country);
-      })
-      .catch((err) => console.log(err))
-      .finally(() => setLoading(false));
+    setCountry("IL");
+    // axios
+    //   .get(
+    //     `https://geo.ipify.org/api/v2/country?apiKey=at_qcVltM1mkAAQIqQvSncbmkJq84sBN`
+    //   )
+    //   .then((res) => {
+    //     return setCountry(res?.data?.location?.country);
+    //   })
+    //   .catch((err) => console.log(err))
+    //   .finally(() => setLoading(false));
   }, [country]);
 
-  if (isFetching || loading) {
+  if (isFetching) {
     return <Loader title="Loading songs around you" />;
   }
 
@@ -43,8 +45,8 @@ const AroundYou = ({ setLink, link }) => {
   return (
     <div className="flex flex-col">
       <h2
-        className="font-bold md:text-3xl text-2xl  text-white text-left w-full flex justify-between items-center
-    lg:flex-row flex-col mt-6 mb-10"
+        className="font-bold md:text-3xl text-2xl mb-3 text-white text-left w-full flex justify-between items-center
+    lg:flex-row flex-col mt-6 md:mb-10"
       >
         {`Around You ${country}`}
       </h2>
