@@ -5,7 +5,6 @@ import { useGetSongsBySearchQuery } from "../redux/services/shazamCore";
 import { useEffect, useRef } from "react";
 import React from "react";
 import { Link } from "react-router-dom";
-import { logo } from "../assets";
 
 const Search = ({ setLink, link }) => {
   const divRef = useRef(null);
@@ -16,7 +15,6 @@ const Search = ({ setLink, link }) => {
   const { data, isFetching, isError } = useGetSongsBySearchQuery(searchTerm);
 
   useEffect(() => {
-    // divRef?.current?.scrollIntoView({ behavior: "smooth" });
     setLink(!link);
   }, [data]);
 

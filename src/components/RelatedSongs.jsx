@@ -1,6 +1,4 @@
-import { Link } from "react-router-dom";
 import SongBar from "./SongBar";
-import PlayPause from "./PlayPause";
 
 const RelatedSongs = ({
   data,

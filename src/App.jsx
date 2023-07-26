@@ -20,10 +20,10 @@ const App = () => {
   const divRef = useRef(null);
 
   useEffect(() => {
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       divRef?.current?.scrollIntoView({ top: 0, behavior: "smooth" });
     }, 100);
-    clearTimeout();
+    return () => clearTimeout(timer);
   }, [link]);
 
   const { activeSong } = useSelector((state) => state.player);
@@ -49,10 +49,7 @@ const App = () => {
         <div className="px-6 md:h-[calc(100vh-72px)] overflow-x-hidden overflow-y-scroll hide-scrollbar flex xl:flex-row flex-col">
           <div className="flex-1 h-fit pb-9 lg:w-auto w-[calc(100vw-50px)]">
             <Routes>
-              <Route
-                path="/"
-                element={<Discover link={link} setLink={setLink} />}
-              />
+              <Route path="/" element={<Discover />} />
               <Route path="/top-artists" element={<TopArtists />} />
               <Route path="/top-charts" element={<TopCharts />} />
               <Route path="/around-you" element={<AroundYou />} />

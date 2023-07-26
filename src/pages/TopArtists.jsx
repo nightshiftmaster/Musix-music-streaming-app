@@ -1,20 +1,12 @@
 import { Error, Loader, ArtistCard } from "../components";
 import { useGetTopChartsQuery } from "../redux/services/shazamCore";
-import { useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { logo } from "../assets";
+
 import _ from "lodash";
 
 import React from "react";
 
-const TopArtists = ({ setLink, link }) => {
+const TopArtists = () => {
   const { data, isFetching, isError } = useGetTopChartsQuery();
-
-  const divRef = useRef(null);
-
-  // useEffect(() => {
-  //   divRef?.current?.scrollIntoView({ behavior: "smooth" });
-  // }, [data]);
 
   if (isFetching) {
     return <Loader title="Loading top charts" />;

@@ -5,9 +5,6 @@ import { selectGenreListId } from "../redux/features/playerSlice";
 import { useGetSongsByGenreQuery } from "../redux/services/shazamCore";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper";
-import { useEffect, useRef, useState } from "react";
-import { logo } from "../assets";
-import { Link } from "react-router-dom";
 
 const Discover = ({ link, setLink }) => {
   const dispatch = useDispatch();
@@ -18,12 +15,6 @@ const Discover = ({ link, setLink }) => {
   const { data, isFetching, error } = useGetSongsByGenreQuery(
     genreListId || "POP"
   );
-
-  const divRef = useRef(null);
-
-  // useEffect(() => {
-  //   divRef?.current?.scrollIntoView({ behavior: "smooth" });
-  // }, [data]);
 
   const genreTitle = genres.find(({ value }) => value === genreListId)?.title;
 
@@ -37,7 +28,7 @@ const Discover = ({ link, setLink }) => {
   return (
     <div className="flex flex-col">
       <div
-        className="w-full mb-3 flex justify-between items-center
+        className="xl:w-[96%] mb-3 flex justify-between items-center
         lg:flex-row md:mb-10 mt-6"
       >
         <h2 className="font-bold md:text-3xl text-2xl ml-0   text-white text-left">

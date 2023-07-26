@@ -1,37 +1,37 @@
-import { useState, useEffect, useRef, forwardRef } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import { RiCloseLine } from "react-icons/ri";
 import { logo } from "../assets";
 import { links } from "../assets/constants";
 import { HiOutlineMenu } from "react-icons/hi";
 
-const NavLinks = ({
-  link,
-  setLink,
-  setMobileMenuOpen,
-  mobileMenuOpen,
-  handleClick,
-}) => (
-  <div className="mt-10">
-    {links.map((item) => {
-      return (
-        <NavLink
-          key={item.name}
-          to={item.to}
-          onClick={() => {
-            setMobileMenuOpen(false);
-            setLink(!link);
-            return handleClick && handleClick();
-          }}
-          className="flex flex-row justify-start items-center my-8 text-sm font-medium text-gray-400 hover:text-cyan-400"
-        >
-          <item.icon className="w-6 h-6 mr-2" />
-          {item.name}
-        </NavLink>
-      );
-    })}
-  </div>
-);
+const NavLinks = ({ link, setLink, setMobileMenuOpen }) => {
+  const [activeLink, setActiveLink] = useState("Discover");
+  return (
+    <div className="mt-10">
+      {links.map((item) => {
+        return (
+          <Link
+            to={item.to}
+            key={item.name}
+            onClick={(e) => {
+              setActiveLink(e.target.innerText);
+              setMobileMenuOpen(false);
+              setLink(!link);
+              return;
+            }}
+            className={`flex flex-row justify-start ${
+              activeLink === item.name ? "active" : null
+            } items-center my-8 text-sm font-medium text-gray-400 hover:text-cyan-400`}
+          >
+            <item.icon className="w-6 h-6 mr-2" />
+            {item.name}
+          </Link>
+        );
+      })}
+    </div>
+  );
+};
 
 const Sidebar = ({ link, setLink }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);

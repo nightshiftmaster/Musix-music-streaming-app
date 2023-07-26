@@ -3,20 +3,12 @@ import { Error, Loader, SongCard } from "../components";
 import { useGetTopChartsQuery } from "../redux/services/shazamCore";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper";
-import { React, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
-import { logo } from "../assets";
+import { React } from "react";
 import _ from "lodash";
 
-const TopCharts = ({ setLink, link }) => {
+const TopCharts = () => {
   const { activeSong, isPlaying } = useSelector((state) => state.player);
   const { data, isFetching, isError } = useGetTopChartsQuery();
-
-  const divRef = useRef(null);
-
-  // useEffect(() => {
-  //   divRef?.current?.scrollIntoView({ behavior: "smooth" });
-  // }, [data]);
 
   if (isFetching) return <Loader title="Loading top charts" />;
 

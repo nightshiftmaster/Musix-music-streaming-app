@@ -5,23 +5,15 @@ import { Error, Loader, SongCard } from "../components";
 import { useGetSongsByCountryQuery } from "../redux/services/shazamCore";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper";
-import { Link } from "react-router-dom";
-import { logo } from "../assets";
 
 import React from "react";
 
-const AroundYou = ({ setLink, link }) => {
+const AroundYou = () => {
   const [country, setCountry] = useState("");
   const [loading, setLoading] = useState(true);
   const { activeSong, isPlaying } = useSelector((state) => state.player);
   console.log(country);
   const { data, isFetching, isError } = useGetSongsByCountryQuery(country);
-
-  const divRef = useRef(null);
-
-  // useEffect(() => {
-  //   divRef?.current?.scrollIntoView({ behavior: "smooth" });
-  // }, [link]);
 
   useEffect(() => {
     setCountry("IL");

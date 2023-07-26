@@ -1,9 +1,7 @@
 import { Link } from "react-router-dom";
-import { useEffect, useRef } from "react";
-import { logo } from "../assets";
+import { useEffect } from "react";
 
 const DetailsHeader = ({ artistId, artistData, songData, setLink, link }) => {
-  const divRef = useRef(null);
   const artist = artistData?.attributes;
   useEffect(() => {
     setLink(!link);
