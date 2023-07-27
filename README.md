@@ -1,3 +1,5 @@
+<a href="https://codeclimate.com/github/nightshiftmaster/musix/maintainability"><img src="https://api.codeclimate.com/v1/badges/f16f950565bd63490a1d/maintainability" /></a>
+
 # Musix
 
 Welcome to Musix, your one-stop destination for discovering the latest and greatest in modern music! Cutting-edge application utilizes the Shazam API to deliver a seamless and engaging musical experience. With Musix, you can easily explore music by genres, artists, and charts, as well as search for tracks by your favorite artists. Musix is fully responsive for desktop browsers and mobile devices.
