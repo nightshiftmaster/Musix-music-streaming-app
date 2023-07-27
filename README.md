@@ -12,6 +12,9 @@ Welcome to Musix, your one-stop destination for discovering the latest and great
 
 [Open Demo](https://musix-application.netlify.app)
 
+![image](desktop.jpeg)
+![image](mobile.jpeg)
+
 ## Setup
 
 To set up a development environment, please follow these steps:
