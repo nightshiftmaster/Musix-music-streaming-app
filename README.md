@@ -1,6 +1,6 @@
 # Musix
 
-Welcome to Musix, your one-stop destination for discovering the latest and greatest in modern music! Cutting-edge application utilizes the Shazam API to deliver a seamless and engaging musical experience. With Musix, you can easily explore music by genres, artists, and charts, as well as search for tracks by your favorite artists.
+Welcome to Musix, your one-stop destination for discovering the latest and greatest in modern music! Cutting-edge application utilizes the Shazam API to deliver a seamless and engaging musical experience. With Musix, you can easily explore music by genres, artists, and charts, as well as search for tracks by your favorite artists. Musix is fully responsive for desktop browsers and mobile devices.
 
 ## Key Features:
 
@@ -9,6 +9,8 @@ Welcome to Musix, your one-stop destination for discovering the latest and great
 - **Real-Time Global and Local Charts**: Stay up-to-date with the hottest tracks from around the world and in your local area. Our real-time charts ensure you never miss a beat and always know what's trending.
 
 - **Search by Artist**: Easily find music from your favorite artists using our powerful search functionality. Simply enter the artist's name, and Musix will fetch all available songs and albums.
+
+[Open Demo](https://musix-application.netlify.app)
 
 ## Setup
 
