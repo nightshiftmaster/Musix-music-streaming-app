@@ -4,11 +4,11 @@ Welcome to Musix, your one-stop destination for discovering the latest and great
 
 ## Key Features:
 
-- Genre and Artist Selection: Dive into the diverse world of music by exploring various genres and discovering new artists. Whether you're into pop, hip-hop, rock, or electronic, Musix has a vast collection to satisfy your musical preferences.
+- **Genre and Artist Selection**: Dive into the diverse world of music by exploring various genres and discovering new artists. Whether you're into pop, hip-hop, rock, or electronic, Musix has a vast collection to satisfy your musical preferences.
 
-- Real-Time Global and Local Charts: Stay up-to-date with the hottest tracks from around the world and in your local area. Our real-time charts ensure you never miss a beat and always know what's trending.
+- **Real-Time Global and Local Charts**: Stay up-to-date with the hottest tracks from around the world and in your local area. Our real-time charts ensure you never miss a beat and always know what's trending.
 
-- Search by Artist: Easily find music from your favorite artists using our powerful search functionality. Simply enter the artist's name, and Musix will fetch all available songs and albums.
+- **Search by Artist**: Easily find music from your favorite artists using our powerful search functionality. Simply enter the artist's name, and Musix will fetch all available songs and albums.
 
 ## Setup
 
@@ -17,13 +17,13 @@ To set up a development environment, please follow these steps:
 1. Clone the repo
 
    ```shell
-    git clone https://github.com/JavaScript-Mastery-PRO/project1_team4_repository.git
+    git clone https://github.com/nightshiftmaster/musix.git
    ```
 
 2. Change directory to the project directory
 
    ```shell
-   cd project1_team4_repository
+   cd musix
    ```
 
 3. Install the dependencies
