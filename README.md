@@ -1,4 +1,4 @@
-<a href="https://codeclimate.com/github/nightshiftmaster/musix/maintainability"><img src="https://api.codeclimate.com/v1/badges/f16f950565bd63490a1d/maintainability" /></a>
+<a href="https://codeclimate.com/github/nightshiftmaster/musix/maintainability"><img src="https://api.codeclimate.com/v1/badges/48a443769e7374516aad/maintainability" /></a>
 
 # Musix
 
