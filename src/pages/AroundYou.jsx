@@ -6,26 +6,26 @@ import { useGetSongsByCountryQuery } from "../redux/services/shazamCore";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper";
 
+// axios
+//   .get(
+//     `https://geo.ipify.org/api/v2/country?apiKey=at_qcVltM1mkAAQIqQvSncbmkJq84sBN`
+//   )
+//   .then((res) => {
+//     return setCountry(res?.data?.location?.country);
+//   })
+//   .catch((err) => console.log(err))
+//   .finally(() => setLoading(false));
+
 import React from "react";
 
 const AroundYou = () => {
   const [country, setCountry] = useState("");
-  const [loading, setLoading] = useState(true);
   const { activeSong, isPlaying } = useSelector((state) => state.player);
   console.log(country);
   const { data, isFetching, isError } = useGetSongsByCountryQuery(country);
 
   useEffect(() => {
     setCountry("IL");
-    // axios
-    //   .get(
-    //     `https://geo.ipify.org/api/v2/country?apiKey=at_qcVltM1mkAAQIqQvSncbmkJq84sBN`
-    //   )
-    //   .then((res) => {
-    //     return setCountry(res?.data?.location?.country);
-    //   })
-    //   .catch((err) => console.log(err))
-    //   .finally(() => setLoading(false));
   }, [country]);
 
   if (isFetching) {
