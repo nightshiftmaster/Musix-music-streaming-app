@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import SongBar from "../components";
+import { SongBar } from "../components";
 import { useSelector, useDispatch } from "react-redux";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper";
@@ -96,10 +96,11 @@ const TopPlay = ({ link, setLink }) => {
         <div className="mt-4 flex flex-col gap-1 xl:h-screen xl:pb-80 overflow-x-hidden overflow-y-scroll hide-scrollbar">
           {topPlays?.map((song, i) => (
             <SongBar
-              key={`${song.key}-${artistId}-${i}`}
+              key={`${song.key}-${song.artistId}-${i}`}
               song={song}
               i={i}
-              artistId={artistId}
+              s
+              artistId={song.artistId}
               isPlaying={isPlaying}
               activeSong={activeSong}
               handlePauseClick={handlePauseClick}
