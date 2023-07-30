@@ -14,7 +14,7 @@ Welcome to Musix, a web application that lets users explore the latest and great
 
 [Open Demo](https://musix-application.netlify.app)
 
-![image](desktop.jpeg)
+![image](./src/assets/desktop.jpeg)
 
 ## Setup
 
