@@ -64,8 +64,9 @@ const Searchbar = ({ link, setLink }) => {
       >
         <ul
           className={`absolute z-0 max-w-sm rounded overflow-hidden shadow-lg backdrop-blur-xl cursor-pointer ${
-            isOpen ? "visible" : "invisible"
+            isOpen ? "visible" : "hidden"
           }`}
+          data-testid="auto-complete"
         >
           {result?.hints?.map((item, i) => (
             <li
@@ -76,6 +77,8 @@ const Searchbar = ({ link, setLink }) => {
                 setInput("");
               }}
               className="block text-base text-white p-4 hover:bg-sky-600 rounded-lg"
+              id="auto-complete-element"
+              // data-testid="auto-complete-element"
             >
               {item.term}
             </li>
@@ -87,7 +90,10 @@ const Searchbar = ({ link, setLink }) => {
 
   return (
     <>
-      <div className="w-screen sticky xl:w-[calc(100vw-800px)] lg:w-[calc(100vw-250px)] bg-gradient-to-r from-black to-[#1d1d5b] lg:mt-2 mb-2  top-0 rounded-xl h-[50px] flex flex-row justify-start items-center z-40">
+      <div
+        className="w-screen sticky xl:w-[calc(100vw-800px)] lg:w-[calc(100vw-250px)] bg-gradient-to-r from-black to-[#1d1d5b] lg:mt-2 mb-2  top-0 rounded-xl h-[50px] flex flex-row justify-start items-center z-40"
+        data-testid="search-bar"
+      >
         <div className="w-screen xl:w-[calc(100vw-800px)] h-12 shine-effect bg-transparent absolute"></div>
         <form
           autoComplete="off"

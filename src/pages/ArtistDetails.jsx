@@ -6,6 +6,7 @@ import {
   useGetSongsBySearchQuery,
 } from "../redux/services/shazamCore";
 import { playPause, setActiveSong } from "../redux/features/playerSlice";
+// import { useGetArtistDetailsQuery } from "../redux/services/fakeApiCore"; // tests api
 
 const ArtistDetails = ({ setLink, link }) => {
   const dispatch = useDispatch();
@@ -22,7 +23,7 @@ const ArtistDetails = ({ setLink, link }) => {
   const artist = artistData?.data[0];
 
   const { data, isFetching, error } = useGetSongsBySearchQuery(
-    artist?.attributes.name
+    artist?.attributes?.name
   );
 
   if (isFetchingArtistDetails || isFetching) {
@@ -43,7 +44,7 @@ const ArtistDetails = ({ setLink, link }) => {
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col" data-testid="artist-details">
       <DetailsHeader
         artistId={artistId}
         artistData={artist}

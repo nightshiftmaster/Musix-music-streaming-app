@@ -9,7 +9,7 @@ const RelatedSongs = ({
   artistId,
 }) => {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col" data-testid="related-songs">
       <h1 className="font-bold text-3xl text-white mb-4">
         {artistId ? "Top Songs" : "Related Songs"}
       </h1>

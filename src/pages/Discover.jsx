@@ -2,11 +2,12 @@ import { Error, Loader, SongCard } from "../components";
 import { genres } from "../assets/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { selectGenreListId } from "../redux/features/playerSlice";
-import { useGetSongsByGenreQuery } from "../redux/services/shazamCore";
+import { useGetSongsByGenreQuery } from "../redux/services/shazamCore"; // production api
+// import { useGetSongsByGenreQuery } from "../redux/services/fakeApiCore"; // tests api
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper";
 
-const Discover = ({ link, setLink }) => {
+const Discover = () => {
   const dispatch = useDispatch();
   const { activeSong, isPlaying, genreListId } = useSelector(
     (state) => state.player
@@ -26,7 +27,7 @@ const Discover = ({ link, setLink }) => {
   }
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col" data-testid="discover">
       <div
         className="xl:w-[96%] mb-3 flex justify-between items-center
         lg:flex-row md:mb-10 mt-6"
@@ -37,10 +38,10 @@ const Discover = ({ link, setLink }) => {
         <select
           onChange={(e) => {
             dispatch(selectGenreListId(e.target.value));
-            setLink(!link);
           }}
           value={genreListId || "Pop"}
           className="bg-black  text-gray-300 p-2 text-sm rounded-lg outline-none"
+          id="genres"
         >
           {genres.map((genre) => (
             <option key={genre.value} value={genre.value}>
@@ -49,7 +50,10 @@ const Discover = ({ link, setLink }) => {
           ))}
         </select>
       </div>
-      <div className="w-full justify-around items-center flex-wrap md:flex hidden gap-6 text-white">
+      <div
+        className="w-full justify-around items-center flex-wrap md:flex hidden gap-6 text-white"
+        data-testid="songs-bar"
+      >
         {data?.map((song, i) => {
           return (
             <SongCard

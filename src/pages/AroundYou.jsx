@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from "react";
-import axios from "axios";
 import { useSelector } from "react-redux";
 import { Error, Loader, SongCard } from "../components";
-import { useGetSongsByCountryQuery } from "../redux/services/shazamCore";
+import { useGetSongsByCountryQuery } from "../redux/services/shazamCore"; // production api
+// import { useGetSongsByCountryQuery } from "../redux/services/fakeApiCore"; // test api
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper";
 
@@ -21,12 +21,12 @@ import React from "react";
 const AroundYou = () => {
   const [country, setCountry] = useState("");
   const { activeSong, isPlaying } = useSelector((state) => state.player);
-  console.log(country);
-  const { data, isFetching, isError } = useGetSongsByCountryQuery(country);
 
-  useEffect(() => {
-    setCountry("IL");
-  }, [country]);
+  // useEffect(() => {
+  //   setCountry("IL");
+  // }, [country]);
+
+  const { data, isFetching, isError } = useGetSongsByCountryQuery("IL");
 
   if (isFetching) {
     return <Loader title="Loading songs around you" />;
@@ -74,7 +74,10 @@ const AroundYou = () => {
         </div>
       </div>
 
-      <div className="w-full justify-around items-center flex-wrap md:flex hidden gap-6 text-white">
+      <div
+        className="w-full justify-around items-center flex-wrap md:flex hidden gap-6 text-white"
+        data-testid="around-you-songs"
+      >
         {data?.map((song, i) => (
           <SongCard
             key={song.key}

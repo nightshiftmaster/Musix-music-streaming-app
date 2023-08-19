@@ -1,5 +1,6 @@
 import { Error, Loader, ArtistCard } from "../components";
-import { useGetTopChartsQuery } from "../redux/services/shazamCore";
+import { useGetTopChartsQuery } from "../redux/services/shazamCore"; // production api
+// import { useGetTopChartsQuery } from "../redux/services/fakeApiCore"; // tests api
 
 import _ from "lodash";
 
@@ -23,7 +24,10 @@ const TopArtists = () => {
         Discover Top Artists
       </h2>
 
-      <div className="flex flex-wrap justify-around gap-8 mt-2">
+      <div
+        className="flex flex-wrap justify-around gap-8 mt-2"
+        data-testid="artists-bar"
+      >
         {_.uniqBy(data, "key")?.map((track, i) => (
           <ArtistCard key={track.key} track={track} />
         ))}

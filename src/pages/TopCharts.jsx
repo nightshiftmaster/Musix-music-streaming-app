@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { Error, Loader, SongCard } from "../components";
-import { useGetTopChartsQuery } from "../redux/services/shazamCore";
+import { useGetTopChartsQuery } from "../redux/services/shazamCore"; // production api
+// import { useGetTopChartsQuery } from "../redux/services/fakeApiCore"; // tests api
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper";
 import { React } from "react";
@@ -19,6 +20,7 @@ const TopCharts = () => {
       <h2
         className="font-bold md:text-3xl text-2xl mb-3 text-white text-left w-full flex justify-between items-center
     lg:flex-row flex-col mt-6 md:mb-10"
+        data-testid="top-charts"
       >
         Discover Top Charts
       </h2>
@@ -35,7 +37,6 @@ const TopCharts = () => {
             className="mt-4"
           >
             {data?.map((song, i) => {
-              //   console.log(song.key);
               return (
                 <SwiperSlide
                   key={i}
@@ -57,7 +58,10 @@ const TopCharts = () => {
         </div>
       </div>
 
-      <div className="w-full justify-around items-center flex-wrap md:flex hidden gap-6 text-white">
+      <div
+        className="w-full justify-around items-center flex-wrap md:flex hidden gap-6 text-white"
+        data-testid="top-songs-container"
+      >
         {_.uniqBy(data, "key")?.map((song, i) => (
           <SongCard
             key={song.key}

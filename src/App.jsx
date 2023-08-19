@@ -19,16 +19,16 @@ const App = () => {
 
   const divRef = useRef(null);
 
-  // useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     divRef?.current?.scrollIntoView({ top: 0, behavior: "smooth" });
-  //   }, 100);
-  //   return () => clearTimeout(timer);
-  // }, [link]);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      divRef?.current?.scrollIntoView({ top: 0, behavior: "smooth" });
+    }, 100);
+    return () => clearTimeout(timer);
+  }, [link]);
 
   const { activeSong } = useSelector((state) => state.player);
   return (
-    <div className="flex relative">
+    <div className="flex relative" data-testid="main-screen">
       <Sidebar link={link} setLink={setLink} />
       <div
         ref={divRef}

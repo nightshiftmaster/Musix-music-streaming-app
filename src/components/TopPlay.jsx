@@ -4,7 +4,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper";
 import { playPause, setActiveSong } from "../redux/features/playerSlice";
-import { useGetTopChartsQuery } from "../redux/services/shazamCore";
+// import { useGetTopChartsQuery } from "../redux/services/shazamCore"; // api for production
+
+import { useGetTopChartsQuery } from "../redux/services/fakeApiCore"; // api for tests
 import { Error, Loader } from "../components";
 
 import "swiper/css";
@@ -12,7 +14,7 @@ import "swiper/css/free-mode";
 
 const TopPlay = ({ link, setLink }) => {
   const dispatch = useDispatch();
-  const { data, isFetching } = useGetTopChartsQuery();
+  const { data, isFetching } = useGetTopChartsQuery("POP");
   const { activeSong, isPlaying, error } = useSelector((state) => state.player);
   const topPlays = data?.slice(0, 15);
 
@@ -34,7 +36,10 @@ const TopPlay = ({ link, setLink }) => {
   }
 
   return (
-    <div className="xl:ml-6 ml-0 xl:mb-0 mb-6 flex-1 xl:max-w-[500px] max-w-full flex flex-col ">
+    <div
+      className="xl:ml-6 ml-0 xl:mb-0 mb-6 flex-1 xl:max-w-[500px] max-w-full flex flex-col"
+      data-testid="top-play"
+    >
       <div className="w-full flex flex-col mb-4">
         <div className="flex flex-row justify-between items-center mb-2">
           <h2 className="text-white font-bold text-2">Top Artists</h2>

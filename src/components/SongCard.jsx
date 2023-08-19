@@ -18,6 +18,7 @@ const SongCard = ({ song, isPlaying, data, activeSong, i, discover }) => {
       className={`flex flex-col ${
         discover ? "w-[170px] h-[230px]" : "w-[250px]"
       }  p-3 bg-white/5 rounded-lg cursor-pointer`}
+      data-testid="song-card"
     >
       <div className="relative w-30 h-56 group">
         <div
