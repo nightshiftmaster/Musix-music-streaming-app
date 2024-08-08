@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Error, Loader, SongCard } from "../components";
-import { useGetSongsBySearchQuery } from "../redux/services/shazamCore"; // production api
-// import { useGetSongsBySearchQuery } from "../redux/services/fakeApiCore"; // test api
+// import { useGetSongsBySearchQuery } from "../redux/services/shazamCore"; // production api
+import { useGetSongsBySearchQuery } from "../redux/services/fakeApiCore"; // test api
 import { useEffect, useRef } from "react";
 import React from "react";
 import { Link } from "react-router-dom";
@@ -12,19 +12,18 @@ const Search = ({ setLink, link }) => {
 
   const { activeSong, isPlaying } = useSelector((state) => state.player);
   const { data, isFetching, isError } = useGetSongsBySearchQuery(searchTerm);
-  console.log(data);
 
   useEffect(() => {
     setLink(!link);
   }, [data]);
 
-  const songs = data?.tracks?.hits?.map((song) => song?.track);
+  if (data.length === 0) return;
 
-  // console.log(songs);
+  const songs = Object.values(data)[0].data[0].views["top-songs"].map(
+    (song) => song
+  );
 
-  const artistId = data?.tracks?.hits[0].track?.artists[0].adamid;
-
-  if (isFetching) return <Loader title="Loading results" />;
+  const artistId = Object.keys(data);
 
   if (isError) return <Error title="Artist not exists" />;
 
@@ -45,7 +44,7 @@ const Search = ({ setLink, link }) => {
       <div className="flex flex-wrap justify-around gap-8">
         {songs?.map((song, i) => (
           <SongCard
-            key={song.key}
+            key={i}
             song={song}
             i={i}
             isPlaying={isPlaying}

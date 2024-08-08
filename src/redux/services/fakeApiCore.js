@@ -1,38 +1,52 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import {
-  getFakeSongsByGenre,
-  getFakeTopCharts,
-  getFakeSongsByCountry,
-  getFakeArtistDetails,
-  getFakeSearch,
-} from "../features/fakeApiSlice";
+  getSongsByGenre,
+  getSongDetails,
+  getSongsByCountry,
+  getArtistDetails,
+  getSearch,
+} from "../features/apiSlice";
 
 const useGetSongsByGenreQuery = (genreListId) => {
   const dispatch = useDispatch();
-  const { data, isFetching, error } = useSelector((state) => state.fakeApi);
+  const { data, isFetching, error } = useSelector((state) => state.api);
   useEffect(() => {
-    dispatch(getFakeSongsByGenre(genreListId || "POP"));
-  }, [data, genreListId]);
-  return { data, isFetching, error };
-};
-
-const useGetTopChartsQuery = () => {
-  const dispatch = useDispatch();
-  const { data, isFetching, error } = useSelector((state) => state.fakeApi);
-  useEffect(() => {
-    dispatch(getFakeTopCharts());
-  }, []);
-
+    dispatch(getSongsByGenre(genreListId || "POP"));
+  }, [genreListId]);
   return { data, isFetching, error };
 };
 
 const useGetSongsByCountryQuery = (country) => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getFakeSongsByCountry(country));
-  }, []);
-  const { data, isFetching, error } = useSelector((state) => state.fakeApi);
+    dispatch(getSongsByCountry(country));
+  }, [country]);
+  const { data, isFetching, error } = useSelector((state) => {
+    return state.api;
+  });
+
+  return { data, isFetching, error };
+};
+
+const useGetSongDetailsQuery = (songid) => {
+  const { genreListId } = useSelector((state) => state.player);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (songid) {
+      dispatch(getSongDetails(songid));
+      return;
+    }
+  }, [songid, dispatch]);
+
+  const {
+    currSong: data,
+    isFetching,
+    error,
+  } = useSelector((state) => {
+    return state.api;
+  });
+
   return { data, isFetching, error };
 };
 
@@ -40,37 +54,31 @@ const useGetArtistDetailsQuery = (artistId) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getFakeArtistDetails(artistId));
-  }, [artistId]);
+    dispatch(getArtistDetails(artistId));
+  }, [artistId, dispatch]);
 
   const { artist, isFetching, error } = useSelector((state) => {
-    return state.fakeApi;
+    return state.api;
   });
-  const data =
-    artist &&
-    useSelector((state) => {
-      return state.fakeApi.allData.artistData;
-    });
-
-  return { data, isFetching, error };
+  return { artist, isFetching, error };
 };
 
 const useGetSongsBySearchQuery = (searchTerm) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getFakeSearch(searchTerm));
+    dispatch(getSearch(searchTerm));
   }, [searchTerm]);
 
   const { artist, isFetching, error } = useSelector((state) => {
-    return state.fakeApi;
+    return state.api;
   });
 
   return { data: artist, isFetching, error };
 };
 
 export {
-  useGetTopChartsQuery,
+  useGetSongDetailsQuery,
   useGetSongsByGenreQuery,
   useGetSongsByCountryQuery,
   useGetArtistDetailsQuery,

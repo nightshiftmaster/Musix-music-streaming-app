@@ -23,7 +23,8 @@ const SongCard = ({ song, isPlaying, data, activeSong, i, discover }) => {
       <div className="relative w-30 h-56 group">
         <div
           className={`absolute inset-0 justify-center items-center bg-black bg-opacity-50 group-hover:flex ${
-            activeSong?.title === song?.title
+            activeSong?.attributes?.name === song?.attributes?.name &&
+            activeSong.title === song?.title
               ? "flex bg-black bg-opacity-70"
               : "hidden"
           }`}
@@ -37,24 +38,34 @@ const SongCard = ({ song, isPlaying, data, activeSong, i, discover }) => {
           />
         </div>
         <img
-          src={song.images?.coverart}
+          src={
+            song?.images
+              ? song?.images?.coverart
+              : song?.attributes?.artwork?.url
+          }
           alt="song_img"
           className="w-full object-contain "
         />
       </div>
       <div className="flex flex-col">
         <p className="font-semibold lg:text-lg text-white truncate mt-2 text-md">
-          <Link to={`/songs/${song?.key}`}>{song.title}</Link>
+          <Link to={`/songs/${song?.id ? song?.id : song?.key}`}>
+            {song?.attributes ? song?.attributes?.name : song?.title}
+          </Link>
         </p>
         <p className="text-sm truncate text-gray-400 mt-1">
           <Link
             to={
-              song?.artists
-                ? `/artists/${song?.artists[0]?.adamid}`
+              song?.relationships?.artists?.data || song?.artists
+                ? `/artists/${
+                    song?.artists
+                      ? song?.artists[0].adamid
+                      : song?.relationships?.artists?.data[0]?.id
+                  }`
                 : "/top-artists"
             }
           >
-            {song.subtitle}
+            {song?.attributes ? song?.attributes?.artistName : song?.subtitle}
           </Link>
         </p>
       </div>

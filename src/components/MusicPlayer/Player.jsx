@@ -11,6 +11,9 @@ const Player = ({
   onLoadedData,
   repeat,
 }) => {
+  const previewUrl = activeSong?.attributes
+    ? activeSong?.attributes?.previews[0]?.url
+    : activeSong?.hub?.actions[1]?.uri;
   const ref = useRef(null);
   // eslint-disable-next-line no-unused-expressions
   if (ref.current) {
@@ -27,11 +30,11 @@ const Player = ({
   // updates audio element only on seekTime change (and not on each rerender):
   useEffect(() => {
     ref.current.currentTime = seekTime;
-  }, [seekTime]);
+  }, [seekTime, activeSong]);
 
   return (
     <audio
-      src={activeSong?.hub?.actions[1]?.uri}
+      src={previewUrl}
       ref={ref}
       loop={repeat}
       onEnded={onEnded}

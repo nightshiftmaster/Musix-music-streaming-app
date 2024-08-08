@@ -4,9 +4,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper";
 import { playPause, setActiveSong } from "../redux/features/playerSlice";
-// import { useGetTopChartsQuery } from "../redux/services/shazamCore"; // api for production
+// import { useGetSongsByGenreQuery } from "../redux/services/shazamCore"; // api for production
 
-import { useGetTopChartsQuery } from "../redux/services/fakeApiCore"; // api for tests
+import {
+  useGetSongsByGenreQuery,
+  useGetSongsByCountryQuery,
+} from "../redux/services/fakeApiCore"; // api for tests
 import { Error, Loader } from "../components";
 
 import "swiper/css";
@@ -14,9 +17,17 @@ import "swiper/css/free-mode";
 
 const TopPlay = ({ link, setLink }) => {
   const dispatch = useDispatch();
-  const { data, isFetching } = useGetTopChartsQuery("POP");
-  const { activeSong, isPlaying, error } = useSelector((state) => state.player);
-  const topPlays = data?.slice(0, 15);
+  const { countryCode } = useSelector((state) => state.api);
+
+  const { activeSong, isPlaying, genreListId } = useSelector(
+    (state) => state.player
+  );
+
+  const { data, isFetching, error } =
+    useGetSongsByCountryQuery(countryCode) &&
+    useGetSongsByGenreQuery(genreListId || "POP");
+
+  const topPlays = data?.slice(0, 20);
 
   const handlePlayClick = (song, i) => {
     dispatch(setActiveSong({ song, i, data }));
@@ -27,13 +38,12 @@ const TopPlay = ({ link, setLink }) => {
     dispatch(playPause(false));
   };
 
-  if (isFetching) {
-    return <Loader title="Loading songs" />;
-  }
-
-  if (error) {
-    return <Error />;
-  }
+  // if (isFetching) {
+  //   return <Loader title="Loading songs" />;
+  // }
+  // if (error) {
+  //   return <Error />;
+  // }
 
   return (
     <div
@@ -61,21 +71,25 @@ const TopPlay = ({ link, setLink }) => {
           modules={[FreeMode]}
           className="mt-4"
         >
-          {topPlays?.map((song, i) => (
-            <SwiperSlide
-              key={song?.key}
-              style={{ width: "25%", height: "auto" }}
-              className="shadow-lg rounded-full animate-slideright"
-            >
-              <Link to={`/artists/${song?.artists[0].adamid} `}>
-                <img
-                  src={song?.images.background}
-                  alt="name"
-                  className="rounded-full w-full object-cover"
-                />
-              </Link>
-            </SwiperSlide>
-          )) || (
+          {topPlays?.map((song, i) => {
+            return (
+              <SwiperSlide
+                key={song?.attributes.name + i}
+                style={{ width: "25%", height: "auto" }}
+                className="shadow-lg rounded-full animate-slideright"
+              >
+                <Link
+                  to={`/artists/${song?.relationships?.artists?.data[0].id} `}
+                >
+                  <img
+                    src={song?.attributes?.artwork?.url}
+                    alt="name"
+                    className="rounded-full w-full object-cover"
+                  />
+                </Link>
+              </SwiperSlide>
+            );
+          }) || (
             <div className="flex">
               {[1, 2, 3, 4].map((song, i) => (
                 <div className="shadow-lg rounded-full animate-slideright">
@@ -104,8 +118,7 @@ const TopPlay = ({ link, setLink }) => {
               key={`${song.key}-${song.artistId}-${i}`}
               song={song}
               i={i}
-              s
-              artistId={song.artistId}
+              artistId={song?.relationships?.artists?.data[0].id}
               isPlaying={isPlaying}
               activeSong={activeSong}
               handlePauseClick={handlePauseClick}

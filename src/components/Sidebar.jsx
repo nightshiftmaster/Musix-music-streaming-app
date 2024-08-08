@@ -53,15 +53,15 @@ const Sidebar = ({ link, setLink }) => {
           mobileMenuOpen={mobileMenuOpen}
         />
       </div>
-      <div className="z-40 absolute lg:hidden block top-6 right-2">
+      <div className="z-40 absolute lg:hidden block top-5 right-2">
         {mobileMenuOpen ? (
           <RiCloseLine
-            className="w-6 h6 text-white mr-2"
+            className="w-6 h-6 text-white mr-2"
             onClick={() => setMobileMenuOpen(false)}
           />
         ) : (
           <HiOutlineMenu
-            className="w-6 h6 text-white mr-2"
+            className="w-6 h-6 text-white mr-2"
             onClick={() => setMobileMenuOpen(true)}
           />
         )}

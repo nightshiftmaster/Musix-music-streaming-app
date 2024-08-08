@@ -2,12 +2,16 @@ import { useState, useEffect, useRef } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { FiSearch } from "react-icons/fi";
 import { HiOutlineHome } from "react-icons/hi";
+import { useDispatch, useSelector } from "react-redux";
+import { searchData } from "../redux/features/apiSlice";
 
 const Searchbar = ({ link, setLink }) => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [input, setInput] = useState("");
   const [result, setResult] = useState("");
   const [isOpen, setOpen] = useState(false);
+  const { searchResults } = useSelector((state) => state.api);
 
   const currRef = useRef(null);
 
@@ -30,28 +34,31 @@ const Searchbar = ({ link, setLink }) => {
   useOutsideAlerter(currRef);
 
   useEffect(() => {
-    if (input.length < 2) {
+    if (input.length < 1) {
       return;
     }
-    const fetchData = async () => {
-      const responce = await fetch(
-        `https://shazam-core.p.rapidapi.com/v1/search/suggest?query=${input}`,
-        {
-          headers: {
-            "X-RapidAPI-Key":
-              "e8fe3c0f64msh4cb10de9c1b4535p107ba1jsnc51d5da5b361",
-          },
-        }
-      );
-      const data = await responce.json();
-      setResult(data);
-      setOpen(true);
-    };
-    fetchData();
+
+    dispatch(searchData(input));
+    // setResult(data);
+    setOpen(true);
+    // const fetchData = async () => {
+    //   const responce = await fetch(
+    //     `https://shazam-core.p.rapidapi.com/v1/search/suggest?query=${input}`,
+    //     {
+    //       headers: {
+    //         "X-RapidAPI-Key": import.meta.env.VITE_SHAZAM_CORE_RAPID_API_KEY,
+    //       },
+    //     }
+    //   );
+    //   const data = await responce.json();
+    //   setResult(data);
+    //   setOpen(true);
+    // };
+    // fetchData();
   }, [input]);
 
   const AutocompleteCard = () => {
-    if (input.length < 2) {
+    if (input.length < 1) {
       setOpen(false);
       return;
     }
@@ -63,26 +70,32 @@ const Searchbar = ({ link, setLink }) => {
         }}
       >
         <ul
-          className={`absolute z-0 max-w-sm rounded overflow-hidden shadow-lg backdrop-blur-xl cursor-pointer ${
+          className={`absolute z-0 max-w-sm rounded ${
+            searchResults.length < 10 ? "h-fit" : "h-screen"
+          } overflow-scroll shadow-lg backdrop-blur-xl cursor-pointer ${
             isOpen ? "visible" : "hidden"
           }`}
           data-testid="auto-complete"
         >
-          {result?.hints?.map((item, i) => (
-            <li
-              key={i}
-              onClick={() => {
-                navigate(`/search/${item.term}`);
-                setResult("");
-                setInput("");
-              }}
-              className="block text-base text-white p-4 hover:bg-sky-600 rounded-lg"
-              id="auto-complete-element"
-              // data-testid="auto-complete-element"
-            >
-              {item.term}
-            </li>
-          ))}
+          {searchResults?.map((item, i) => {
+            const artistName = Object.values(item)[0].data[0].attributes.name;
+
+            return (
+              <li
+                key={i}
+                onClick={() => {
+                  navigate(`/search/${artistName}`);
+                  setResult("");
+                  setInput("");
+                }}
+                className="block text-base text-white p-4 hover:bg-sky-600 rounded-lg"
+                id="auto-complete-element"
+                // data-testid="auto-complete-element"
+              >
+                {artistName}
+              </li>
+            );
+          })}
         </ul>
       </div>
     );
