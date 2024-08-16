@@ -6,7 +6,6 @@ import { IoIosArrowBack } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import PageHeader from "./components/PageHeader";
-import HistoryNavs from "./components/HistoryNavs";
 
 import { Searchbar, Sidebar, MusicPlayer, TopPlay } from "./components";
 import {
@@ -48,24 +47,22 @@ const App = () => {
             color="white"
             size="30"
           />
-          {/* <Link to={`/`}> */}
-          <img
-            onClick={() => {
-              setLink(!link);
+          <Link to={`/`}>
+            <img
+              onClick={() => {
+                setLink(!link);
 
-              navigate("/");
-            }}
-            src={logo}
-            alt="logo"
-            className="w-20 h-16 object-contain ml-3"
-          />
-          {/* </Link> */}
-        </div>
-        <div className="md:mt-10 flex justify-center items-center">
-          <HistoryNavs />
-          <Searchbar link={link} setLink={setLink} />
+                navigate("/");
+              }}
+              src={logo}
+              alt="logo"
+              className="w-20 h-16 object-contain ml-3"
+            />
+          </Link>
         </div>
 
+        <div className=" top-5 flex justify-start items-center"></div>
+        <Searchbar className=" backdrop:top-10" link={link} setLink={setLink} />
         <div className="px-6 md:h-[calc(100vh-72px)] overflow-x-hidden overflow-y-scroll hide-scrollbar flex xl:flex-row flex-col">
           <div className="flex-1 h-fit pb-9 lg:w-auto w-[calc(100vw-50px)]">
             <PageHeader />

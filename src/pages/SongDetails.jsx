@@ -5,7 +5,7 @@ import { setActiveSong, playPause } from "../redux/features/playerSlice";
 import {
   useGetSongsByGenreQuery,
   useGetSongDetailsQuery,
-} from "../redux/services/fakeApiCore";
+} from "../redux/services/apiCore";
 import { useEffect, useState } from "react";
 // import {
 //   useGetSongDetailsQuery,

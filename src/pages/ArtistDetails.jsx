@@ -9,7 +9,7 @@ import { playPause, setActiveSong } from "../redux/features/playerSlice";
 import {
   useGetArtistDetailsQuery,
   useGetSongsBySearchQuery,
-} from "../redux/services/fakeApiCore"; // tests api
+} from "../redux/services/apiCore"; // tests api
 import { useEffect, useState } from "react";
 
 const ArtistDetails = ({ setLink, link }) => {

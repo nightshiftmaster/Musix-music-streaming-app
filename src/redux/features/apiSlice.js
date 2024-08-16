@@ -1,5 +1,5 @@
 import { createSlice, current } from "@reduxjs/toolkit";
-import { data } from "../../assets/dataForFakeApi";
+import { data } from "../../assets/database";
 
 const initialState = {
   allData: {

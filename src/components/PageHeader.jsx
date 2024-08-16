@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 import { selectGenreListId } from "../redux/features/playerSlice";
 
 const pageNames = {
-  "/": "Discover",
+  "/": "Discover", //
   "/top-charts": "Top Charts",
   "/top-artists": "Top Artists",
   "/around-you": "Around You",
@@ -14,9 +14,7 @@ const pageNames = {
 const PageHeader = () => {
   const dispatch = useDispatch();
   const location = useLocation();
-  const { activeSong, isPlaying, genreListId } = useSelector(
-    (state) => state.player
-  );
+  const { genreListId } = useSelector((state) => state.player);
   const path = location.pathname;
   const pageName = pageNames[path];
 

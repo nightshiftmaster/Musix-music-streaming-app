@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Error, Loader, SongCard } from "../components";
 // import { useGetSongsBySearchQuery } from "../redux/services/shazamCore"; // production api
-import { useGetSongsBySearchQuery } from "../redux/services/fakeApiCore"; // test api
+import { useGetSongsBySearchQuery } from "../redux/services/apiCore"; // test api
 import { useEffect, useRef } from "react";
 import React from "react";
 import { Link } from "react-router-dom";

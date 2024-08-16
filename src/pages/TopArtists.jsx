@@ -2,7 +2,7 @@ import { Error, Loader, ArtistCard } from "../components";
 // import { useGetSongsByGenreQuery } from "../redux/services/shazamCore"; // production api
 import { useSelector } from "react-redux";
 
-import { useGetSongsByGenreQuery } from "../redux/services/fakeApiCore"; // tests api
+import { useGetSongsByGenreQuery } from "../redux/services/apiCore"; // tests api
 
 import _ from "lodash";
 

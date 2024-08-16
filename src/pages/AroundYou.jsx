@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Error, Loader, SongCard } from "../components";
 // import { useGetSongsByCountryQuery } from "../redux/services/shazamCore"; // production api
-import { useGetSongsByCountryQuery } from "../redux/services/fakeApiCore"; // test api
+import { useGetSongsByCountryQuery } from "../redux/services/apiCore"; // test api
 import { Swiper, SwiperSlide } from "swiper/react";
 import { setCountryCode } from "../redux/features/apiSlice";
 import { FreeMode } from "swiper";

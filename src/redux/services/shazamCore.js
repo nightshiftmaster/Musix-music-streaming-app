@@ -1,5 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
+// inactive api !!!
+
 const baseQuery = fetchBaseQuery({
   baseUrl: "https://shazam-core.p.rapidapi.com",
   prepareHeaders: (headers) => {
@@ -10,38 +12,6 @@ const baseQuery = fetchBaseQuery({
     return headers;
   },
 });
-
-// const baseQueryWithRetry = async (args, api, extraOptions) => {
-//   const MAX_RETRIES = 5; // Максимальное количество повторных попыток
-//   let result;
-//   let retryCount = 0;
-
-//   while (retryCount < MAX_RETRIES) {
-//     result = await baseQuery(args, api, extraOptions);
-
-//     if (result.error && result.error.status === 429) {
-//       const retryAfterHeader =
-//         result.error.data?.headers?.["x-ratelimit-reset"];
-//       const retryAfter = retryAfterHeader ? parseInt(retryAfterHeader, 10) : 60;
-//       const retryIn = retryAfter - Math.floor(Date.now() + 1000 / 1000);
-//       console.log(`Rate limit exceeded. Retrying in ${retryIn} seconds.`);
-//       await new Promise((resolve) => setTimeout(resolve, retryIn * 2000));
-//       retryCount++;
-//     } else {
-//       break;
-//     }
-//   }
-
-//   if (
-//     retryCount === MAX_RETRIES &&
-//     result.error &&
-//     result.error.status === 429
-//   ) {
-//     console.error("Max retries reached. Could not complete the request.");
-//   }
-
-//   return result;
-// };
 
 export const shazamCoreApi = createApi({
   reducerPath: "shazamCoreApi",

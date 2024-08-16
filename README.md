@@ -2,7 +2,7 @@
 
 # Musix
 
-Welcome to Musix, a web application that lets users explore the latest and greatest in modern music! The app integrates the Shazam API to provide a seamless and engaging musical experience. Musix offers a range of features for users to discover music by genres, artists, and charts, as well as search for tracks by their favorite artists. The application is fully responsive, ensuring a smooth experience on both desktop browsers and mobile devices.
+Welcome to Musix, a web application that lets users explore the latest and greatest in modern music! Musix offers a range of features for users to discover music by genres, artists, and charts, as well as search for tracks by their favorite artists. The application is fully responsive, ensuring a smooth experience on both desktop browsers and mobile devices.
 
 ## Key Features:
 

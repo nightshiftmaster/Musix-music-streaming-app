@@ -23,7 +23,7 @@ const HistoryNavs = () => {
   const stopGoForward = history[history.length - 1] === pathname;
 
   return (
-    <div className="gap-2 lg:flex hidden  justify-center items-center">
+    <div className="gap-2 lg:flex hidden  justify-center items-center z-50">
       <div
         className={`h-7 w-7 relative group ${
           stopGoBack ? "cursor-not-allowed" : "cursor-pointer"
@@ -65,6 +65,7 @@ const HistoryNavs = () => {
         <IoIosArrowForward
           className="flex justify-center items-center mt-[2px]"
           onClick={() => {
+            console.log(history);
             navigate(+1);
           }}
           color={stopGoForward ? "gray" : "white"}
