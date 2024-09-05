@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Error, Loader, SongCard } from "../components";
-// import { useGetSongsBySearchQuery } from "../redux/services/shazamCore"; // production api
-import { useGetSongsBySearchQuery } from "../redux/services/apiCore"; // test api
+import { useGetArtistBySearchQuery } from "../redux/services/shazamCore"; // production api
+// import { useGetSongsBySearchQuery } from "../redux/services/apiCore"; // test api
 import { useEffect, useRef } from "react";
 import React from "react";
 import { Link } from "react-router-dom";
@@ -11,19 +11,24 @@ const Search = ({ setLink, link }) => {
   const { searchTerm } = useParams();
 
   const { activeSong, isPlaying } = useSelector((state) => state.player);
-  const { data, isFetching, isError } = useGetSongsBySearchQuery(searchTerm);
+  const { data, isFetching, isError } = useGetArtistBySearchQuery(searchTerm);
 
   useEffect(() => {
     setLink(!link);
   }, [data]);
 
-  if (data.length === 0) return;
+  if (isFetching) {
+    return <Loader title="Loading songs" />;
+  }
+  if (isError) {
+    console.log("something went wrong");
+  }
 
-  const songs = Object.values(data)[0].data[0].views["top-songs"].map(
-    (song) => song
-  );
+  if (data?.length === 0) return;
 
-  const artistId = Object.keys(data);
+  const songs = data?.topSongs[0].map((song) => song);
+
+  const artistId = data.id;
 
   if (isError) return <Error title="Artist not exists" />;
 

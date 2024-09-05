@@ -1,9 +1,13 @@
 import { Loader, SongCard } from "../components";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 // import { useGetSongsByGenreQuery } from "../redux/services/shazamCore"; // production api
 import { useGetSongsByGenreQuery } from "../redux/services/apiCore"; // tests api
-import { Swiper, SwiperSlide } from "swiper/react";
+import * as react from "swiper/react";
 import { FreeMode } from "swiper";
+import { data as database } from "../assets/database";
+
+const artists = database.artists;
 
 const Discover = () => {
   const { activeSong, isPlaying, genreListId } = useSelector(
@@ -42,7 +46,7 @@ const Discover = () => {
       </div>
       <div className="flex-col w-full md:hidden flex">
         <div className="w-full justify-between items-center flex-col">
-          <Swiper
+          <react.Swiper
             slidesPerView={2}
             spaceBetween={40}
             freeMode
@@ -55,7 +59,7 @@ const Discover = () => {
             }}
           >
             {data?.map((song, i) => (
-              <SwiperSlide
+              <react.SwiperSlide
                 key={i}
                 className="shadow-lg rounded-full animate-slideright"
               >
@@ -68,9 +72,9 @@ const Discover = () => {
                   data={data}
                   discover="true"
                 />
-              </SwiperSlide>
+              </react.SwiperSlide>
             ))}
-          </Swiper>
+          </react.Swiper>
         </div>
       </div>
     </div>

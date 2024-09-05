@@ -49,7 +49,7 @@ const SongCard = ({ song, isPlaying, data, activeSong, i, discover }) => {
       </div>
       <div className="flex flex-col">
         <p className="font-semibold lg:text-lg text-white truncate mt-2 text-md">
-          <Link to={`/songs/${song?.id ? song?.id : song?.key}`}>
+          <Link to={`/songs/${song?.id}`}>
             {song?.attributes ? song?.attributes?.name : song?.title}
           </Link>
         </p>

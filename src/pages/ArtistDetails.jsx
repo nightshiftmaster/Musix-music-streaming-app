@@ -1,15 +1,15 @@
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { DetailsHeader, Error, Loader, RelatedSongs } from "../components";
-// import {
-//   useGetArtistDetailsQuery,
-//   useGetSongsBySearchQuery,
-// } from "../redux/services/shazamCore";
-import { playPause, setActiveSong } from "../redux/features/playerSlice";
 import {
   useGetArtistDetailsQuery,
   useGetSongsBySearchQuery,
-} from "../redux/services/apiCore"; // tests api
+} from "../redux/services/shazamCore";
+import { playPause, setActiveSong } from "../redux/features/playerSlice";
+// import {
+//   useGetArtistDetailsQuery,
+//   useGetSongsBySearchQuery,
+// } from "../redux/services/apiCore"; // tests api
 import { useEffect, useState } from "react";
 
 const ArtistDetails = ({ setLink, link }) => {
@@ -23,26 +23,20 @@ const ArtistDetails = ({ setLink, link }) => {
   const { id: artistId } = useParams();
 
   const {
-    artist,
+    data: artist,
     isFetching: isFetchingArtistDetails,
     error,
   } = useGetArtistDetailsQuery(artistId);
 
-  const artistData = artist[0]?.data[0];
+  console.log(artist);
 
-  const topSongs = artistData?.views["top-songs"];
-
-  // const artist = artistData?.data[0];
-
-  // const { data, isFetching, error } = useGetSongsBySearchQuery(
-  //   artist?.attributes?.name
-  // );
-
-  // if (isFetchingArtistDetails) {
-  //   return <Loader title="Searching artist details" />;
-  // }
+  if (isFetchingArtistDetails) {
+    return <Loader title="Searching artist details" />;
+  }
 
   if (error) return <Error />;
+
+  const topSongs = artist[0]?.topSongs[0];
 
   // const songs = data?.tracks?.hits?.map((song) => song.track);
 
@@ -59,7 +53,7 @@ const ArtistDetails = ({ setLink, link }) => {
     <div className="flex flex-col" data-testid="artist-details">
       <DetailsHeader
         artistId={artistId}
-        artistData={artist[0]}
+        artistData={artist}
         setLink={setLink}
         link={link}
       />

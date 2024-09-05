@@ -2,17 +2,15 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react";
 
 const DetailsHeader = ({ artistId, artistData, songData, setLink, link }) => {
-  const artist = artistData?.data[0];
+  const artist = artistData && artistData[0];
 
-  const songImageUrl = artistData
-    ? artist.avatar
-    : songData?.attributes?.artwork?.url;
+  console.log(songData);
 
-  const songTitle = artist
-    ? artist?.attributes?.name
-    : songData?.attributes?.name;
+  const songImageUrl = artistData ? artist.avatar : songData?.artwork?.url;
 
-  const songSubtitle = songData?.attributes?.artistName;
+  const songTitle = artist ? artist?.attributes?.name : songData?.name;
+
+  const songSubtitle = songData?.artistName;
 
   useEffect(() => {
     setLink(!link);

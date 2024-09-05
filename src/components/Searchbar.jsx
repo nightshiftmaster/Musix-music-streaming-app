@@ -42,20 +42,15 @@ const Searchbar = ({ link, setLink }) => {
     dispatch(searchData(input));
     // setResult(data);
     setOpen(true);
-    // const fetchData = async () => {
-    //   const responce = await fetch(
-    //     `https://shazam-core.p.rapidapi.com/v1/search/suggest?query=${input}`,
-    //     {
-    //       headers: {
-    //         "X-RapidAPI-Key": import.meta.env.VITE_SHAZAM_CORE_RAPID_API_KEY,
-    //       },
-    //     }
-    //   );
-    //   const data = await responce.json();
-    //   setResult(data);
-    //   setOpen(true);
-    // };
-    // fetchData();
+    const fetchData = async () => {
+      const responce = await fetch(
+        `http://localhost:3001/api/artists/?q=${input}`
+      );
+      const data = await responce.json();
+      setResult(data);
+      setOpen(true);
+    };
+    fetchData();
   }, [input]);
 
   const AutocompleteCard = () => {
@@ -63,6 +58,7 @@ const Searchbar = ({ link, setLink }) => {
       setOpen(false);
       return;
     }
+
     return (
       <div
         onClick={() => {
@@ -72,31 +68,32 @@ const Searchbar = ({ link, setLink }) => {
       >
         <ul
           className={`absolute z-0 max-w-sm rounded ${
-            searchResults.length < 10 ? "h-fit" : "h-screen"
+            result.length < 10 ? "h-fit" : "h-screen"
           } overflow-scroll shadow-lg backdrop-blur-xl cursor-pointer ${
             isOpen ? "visible" : "hidden"
           }`}
           data-testid="auto-complete"
         >
-          {searchResults?.map((item, i) => {
-            const artistName = Object.values(item)[0].data[0].attributes.name;
+          {result &&
+            result?.map((item, i) => {
+              const artistName = item.attributes.name;
 
-            return (
-              <li
-                key={i}
-                onClick={() => {
-                  navigate(`/search/${artistName}`);
-                  setResult("");
-                  setInput("");
-                }}
-                className="block text-base text-white p-4 hover:bg-sky-600 rounded-lg"
-                id="auto-complete-element"
-                // data-testid="auto-complete-element"
-              >
-                {artistName}
-              </li>
-            );
-          })}
+              return (
+                <li
+                  key={i}
+                  onClick={() => {
+                    navigate(`/search/${artistName}`);
+                    setResult("");
+                    setInput("");
+                  }}
+                  className="block text-base text-white p-4 hover:bg-sky-600 rounded-lg"
+                  id="auto-complete-element"
+                  // data-testid="auto-complete-element"
+                >
+                  {artistName}
+                </li>
+              );
+            })}
         </ul>
       </div>
     );

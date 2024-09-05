@@ -4,17 +4,18 @@ import { DetailsHeader, Error, Loader, RelatedSongs } from "../components";
 import { setActiveSong, playPause } from "../redux/features/playerSlice";
 import {
   useGetSongsByGenreQuery,
-  useGetSongDetailsQuery,
+  // useGetSongDetailsQuery,
 } from "../redux/services/apiCore";
 import { useEffect, useState } from "react";
-// import {
-//   useGetSongDetailsQuery,
-//   useGetRelatedSongsQuery,
-// } from "../redux/services/shazamCore";
+import {
+  useGetSongDetailsQuery,
+  //   useGetRelatedSongsQuery,
+} from "../redux/services/shazamCore";
 
 const SongDetails = ({ setLink, link }) => {
   const dispatch = useDispatch();
   const [relatedSongs, setRelatedSongs] = useState();
+  const [result, setResult] = useState("");
   const { activeSong, isPlaying, genreListId } = useSelector(
     (state) => state.player
   );
@@ -25,7 +26,7 @@ const SongDetails = ({ setLink, link }) => {
   const { songid } = useParams();
 
   useEffect(() => {
-    // setLink(!link);
+    setLink(!link);
     const start = Math.floor(Math.random() * 41);
 
     const end = start + 10;
@@ -39,7 +40,17 @@ const SongDetails = ({ setLink, link }) => {
     error,
   } = useGetSongDetailsQuery(songid);
 
-  const lirics = song[0]?.songData?.resources?.lyrics;
+  useEffect(() => {
+    const fetchData = async () => {
+      const responce = await fetch(
+        `http://localhost:3001/api/artists/topsongs/${songid}`
+      );
+      const data = await responce.json();
+      setResult(data[0].topSongs.attributes);
+      setOpen(true);
+    };
+    if (!song) fetchData();
+  }, []);
 
   const handlePauseClick = () => {
     dispatch(playPause(false));
@@ -56,11 +67,13 @@ const SongDetails = ({ setLink, link }) => {
 
   if (error) return <Error />;
 
+  const lirics = song[0]?.lyrics;
+
   return (
     <div className="flex flex-col">
       <DetailsHeader
         artistId=""
-        songData={song[0]?.songDetails}
+        songData={song[0]?.attributes || result}
         setLink={setLink}
         link={link}
       ></DetailsHeader>
