@@ -13,6 +13,8 @@ const SongCard = ({ song, isPlaying, data, activeSong, i, discover }) => {
     dispatch(playPause(false));
   };
 
+  console.log(song);
+
   return (
     <div
       className={`flex flex-col ${
@@ -54,17 +56,7 @@ const SongCard = ({ song, isPlaying, data, activeSong, i, discover }) => {
           </Link>
         </p>
         <p className="text-sm truncate text-gray-400 mt-1">
-          <Link
-            to={
-              song?.relationships?.artists?.data || song?.artists
-                ? `/artists/${
-                    song?.artists
-                      ? song?.artists[0].adamid
-                      : song?.relationships?.artists?.data[0]?.id
-                  }`
-                : "/top-artists"
-            }
-          >
+          <Link to={`/artists/${song?.artists[0].id}`}>
             {song?.attributes ? song?.attributes?.artistName : song?.subtitle}
           </Link>
         </p>

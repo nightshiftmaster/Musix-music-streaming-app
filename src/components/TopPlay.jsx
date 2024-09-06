@@ -9,7 +9,7 @@ import { playPause, setActiveSong } from "../redux/features/playerSlice";
 import {
   useGetSongsByGenreQuery,
   useGetSongsByCountryQuery,
-} from "../redux/services/apiCore"; // api for tests
+} from "../redux/services/testApiCore"; // api for tests
 import { Error, Loader } from "../components";
 
 import "swiper/css";

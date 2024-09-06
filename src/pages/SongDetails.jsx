@@ -2,15 +2,9 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { DetailsHeader, Error, Loader, RelatedSongs } from "../components";
 import { setActiveSong, playPause } from "../redux/features/playerSlice";
-import {
-  useGetSongsByGenreQuery,
-  // useGetSongDetailsQuery,
-} from "../redux/services/apiCore";
+// import { useGetSongsByGenreQuery } from "../redux/services/testApiCore"; // api for tests
 import { useEffect, useState } from "react";
-import {
-  useGetSongDetailsQuery,
-  //   useGetRelatedSongsQuery,
-} from "../redux/services/shazamCore";
+import { useGetSongDetailsQuery } from "../redux/services/apiCore";
 
 const SongDetails = ({ setLink, link }) => {
   const dispatch = useDispatch();

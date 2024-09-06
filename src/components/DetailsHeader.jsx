@@ -4,8 +4,6 @@ import { useEffect } from "react";
 const DetailsHeader = ({ artistId, artistData, songData, setLink, link }) => {
   const artist = artistData && artistData[0];
 
-  console.log(songData);
-
   const songImageUrl = artistData ? artist.avatar : songData?.artwork?.url;
 
   const songTitle = artist ? artist?.attributes?.name : songData?.name;

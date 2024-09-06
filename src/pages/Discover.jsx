@@ -1,13 +1,10 @@
 import { Loader, SongCard } from "../components";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-// import { useGetSongsByGenreQuery } from "../redux/services/shazamCore"; // production api
-import { useGetSongsByGenreQuery } from "../redux/services/apiCore"; // tests api
+import { useGetSongsByGenreQuery } from "../redux/services/apiCore"; // production api
+// import { useGetSongsByGenreQuery } from "../redux/services/testApiCore"; // tests api
 import * as react from "swiper/react";
 import { FreeMode } from "swiper";
-import { data as database } from "../assets/database";
-
-const artists = database.artists;
 
 const Discover = () => {
   const { activeSong, isPlaying, genreListId } = useSelector(

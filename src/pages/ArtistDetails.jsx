@@ -1,10 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { DetailsHeader, Error, Loader, RelatedSongs } from "../components";
-import {
-  useGetArtistDetailsQuery,
-  useGetSongsBySearchQuery,
-} from "../redux/services/shazamCore";
+import { useGetArtistDetailsQuery } from "../redux/services/apiCore";
 import { playPause, setActiveSong } from "../redux/features/playerSlice";
 // import {
 //   useGetArtistDetailsQuery,
@@ -28,8 +25,6 @@ const ArtistDetails = ({ setLink, link }) => {
     error,
   } = useGetArtistDetailsQuery(artistId);
 
-  console.log(artist);
-
   if (isFetchingArtistDetails) {
     return <Loader title="Searching artist details" />;
   }
@@ -37,8 +32,6 @@ const ArtistDetails = ({ setLink, link }) => {
   if (error) return <Error />;
 
   const topSongs = artist[0]?.topSongs[0];
-
-  // const songs = data?.tracks?.hits?.map((song) => song.track);
 
   const handlePauseClick = () => {
     dispatch(playPause(false));

@@ -1,86 +1,40 @@
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import {
-  getSongsByGenre,
-  getSongDetails,
-  getSongsByCountry,
-  getArtistDetails,
-  getSearch,
-} from "../features/apiSlice";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { BASE_API_URL } from "../../assets/constants";
 
-const useGetSongsByGenreQuery = (genreListId) => {
-  const dispatch = useDispatch();
-  const { data, isFetching, error } = useSelector((state) => state.api);
-  useEffect(() => {
-    dispatch(getSongsByGenre(genreListId || "POP"));
-  }, [genreListId]);
-  return { data, isFetching, error };
-};
+const baseQuery = fetchBaseQuery({
+  baseUrl: `${BASE_API_URL}/api`,
+});
 
-const useGetSongsByCountryQuery = (country) => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getSongsByCountry(country));
-  }, [country]);
-  const { data, isFetching, error } = useSelector((state) => {
-    return state.api;
-  });
+export const shazamCoreApi = createApi({
+  reducerPath: "shazamCoreApi",
+  baseQuery,
+  endpoints: (builder) => ({
+    getSongDetails: builder.query({
+      query: (songId) => {
+        return `/songs/${songId}`;
+      },
+    }),
+    getSongsByGenre: builder.query({
+      query: (genre) => `/songs/genre?style=${genre}`,
+    }),
 
-  return { data, isFetching, error };
-};
+    getArtistDetails: builder.query({
+      query: (artistId) => `/artists/id/${artistId}`,
+    }),
+    getArtistBySearch: builder.query({
+      query: (name) => `/artists/name/${name}`,
+    }),
 
-const useGetSongDetailsQuery = (songid) => {
-  const { genreListId } = useSelector((state) => state.player);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    if (songid) {
-      dispatch(getSongDetails(songid));
-      return;
-    }
-  }, [songid, dispatch]);
+    getSongsBySearch: builder.query({
+      query: (query) => `/artists/search?q=${query}`,
+    }),
+  }),
+});
 
-  const {
-    currSong: data,
-    isFetching,
-    error,
-  } = useSelector((state) => {
-    return state.api;
-  });
-
-  return { data, isFetching, error };
-};
-
-const useGetArtistDetailsQuery = (artistId) => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getArtistDetails(artistId));
-  }, [artistId, dispatch]);
-
-  const { artist, isFetching, error } = useSelector((state) => {
-    return state.api;
-  });
-  return { artist, isFetching, error };
-};
-
-const useGetSongsBySearchQuery = (searchTerm) => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getSearch(searchTerm));
-  }, [searchTerm]);
-
-  const { artist, isFetching, error } = useSelector((state) => {
-    return state.api;
-  });
-
-  return { data: artist, isFetching, error };
-};
-
-export {
+export const {
   useGetSongDetailsQuery,
   useGetSongsByGenreQuery,
-  useGetSongsByCountryQuery,
   useGetArtistDetailsQuery,
   useGetSongsBySearchQuery,
-};
+  useGetArtistBySearchQuery,
+} = shazamCoreApi;

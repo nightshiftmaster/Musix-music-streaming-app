@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Error, Loader, SongCard } from "../components";
-import { useGetSongsByGenreQuery } from "../redux/services/shazamCore"; // production api
+import { useGetSongsByGenreQuery } from "../redux/services/apiCore"; // production api
 // import { useGetSongsByCountryQuery } from "../redux/services/apiCore"; // test api
 import { Swiper, SwiperSlide } from "swiper/react";
 import { setCountryCode } from "../redux/features/apiSlice";
@@ -20,11 +20,11 @@ const AroundYou = () => {
     dispatch(setCountryCode("IL"));
   }, []);
 
-  // if (isFetching) {
-  //   return <Loader title="Loading songs around you" />;
-  // }
+  if (isFetching) {
+    return <Loader title="Loading songs around you" />;
+  }
 
-  // if (isError && country) return <Error />;
+  if (isError) return <Error />;
 
   return (
     <div className="flex flex-col">
