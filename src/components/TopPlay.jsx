@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { SongBar } from "../components";
+import { SongBar } from ".";
 import { useSelector, useDispatch } from "react-redux";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper";
@@ -10,7 +10,7 @@ import {
   useGetSongsByGenreQuery,
   useGetSongsByCountryQuery,
 } from "../redux/services/testApiCore"; // api for tests
-import { Error, Loader } from "../components";
+import { Error, Loader } from ".";
 
 import "swiper/css";
 import "swiper/css/free-mode";

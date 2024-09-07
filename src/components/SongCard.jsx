@@ -13,8 +13,6 @@ const SongCard = ({ song, isPlaying, data, activeSong, i, discover }) => {
     dispatch(playPause(false));
   };
 
-  console.log(song);
-
   return (
     <div
       className={`flex flex-col ${
