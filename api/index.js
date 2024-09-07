@@ -7,7 +7,6 @@ require("dotenv").config();
 
 const app = express();
 
-// Подключение к MongoDB
 mongoose
   .connect(process.env.MONGO, {
     useNewUrlParser: true,
@@ -16,17 +15,15 @@ mongoose
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.error("Failed to connect to MongoDB", err));
 
-// Обработка статических файлов
 app.use(express.static(path.join(__dirname, "../public")));
 app.use(cors());
 app.use(bodyParser.json());
 
-// API маршруты
 app.use("/api", require("./api"));
 
 // Обслуживание фронтенда
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../public", "index.html"));
+  res.sendFile(path.join(__dirname, "/", "index.html"));
 });
 
 module.exports = app;
