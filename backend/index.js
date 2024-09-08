@@ -17,6 +17,10 @@ app.use(bodyParser.json());
 
 app.use("/api", apiRoutes);
 
+app.get("/", (req, res) => {
+  res.send("Server is running on root route");
+});
+
 // app.use("/", (req, res) => res.send("server is running"));
 
 // app.get("*", (req, res) => {
