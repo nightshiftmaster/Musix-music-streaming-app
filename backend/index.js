@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 
 app.use("/api", apiRoutes);
 
-app.use("/", (req, res) => res.send("server is running"));
+// app.use("/", (req, res) => res.send("server is running"));
 
 // app.get("*", (req, res) => {
 //   res.sendFile(path.join(__dirname, "public", "index.html"));
