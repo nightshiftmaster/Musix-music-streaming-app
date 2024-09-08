@@ -23,4 +23,5 @@ export const links = [
   { name: "Top Charts", to: "/top-charts", icon: HiOutlineHashtag },
 ];
 
-export const BASE_API_URL = import.meta.env.VITE_PUBLIC_BASE_API_URL;
+export const BASE_API_URL =
+  "https://musix-music-streaming-app-server.vercel.app";
