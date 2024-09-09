@@ -2868,8 +2868,6 @@ mongoose.connect(process.env.MONGO);
 app.use(cors());
 app.use(bodyParser.json());
 
-app.use("/api", apiRoutes);
-
 app.get("/", (req, res) => {
   res.send(data);
 });
