@@ -15,7 +15,7 @@ export const shazamCoreApi = createApi({
       },
     }),
     getSongsByGenre: builder.query({
-      query: (genre) => `/songs/genre?style=${genre}`,
+      query: (genre) => `/`,
     }),
 
     getArtistDetails: builder.query({

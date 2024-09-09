@@ -24,4 +24,4 @@ export const links = [
 ];
 
 export const BASE_API_URL =
-  "https://musix-music-streaming-app-server.vercel.app/";
+  "https://musix-music-streaming-app-server.vercel.app";
