@@ -12,9 +12,9 @@ Welcome to Musix, a web application that lets users explore the latest and great
 
 - **Search by Artist**: Quickly find music from your favorite artists using search. Just enter the artist's name, and Musix will fetch all their available songs and albums.
 
-[Open Demo](https://musix-application.netlify.app)
+[Open Demo](https://musix-music-streaming-app.vercel.app)
 
-![image](./src/assets/desktop.jpeg)
+![image](./client/src/assets/desktop.jpeg)
 
 ## Setup
 
