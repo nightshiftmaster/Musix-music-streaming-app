@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { BASE_API_URL } from "../../assets/constants";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: `${BASE_API_URL}`,
+  baseUrl: `${BASE_API_URL}/api`,
 });
 
 export const shazamCoreApi = createApi({
@@ -15,7 +15,7 @@ export const shazamCoreApi = createApi({
       },
     }),
     getSongsByGenre: builder.query({
-      query: (genre) => `/`,
+      query: (genre) => `/songs/genre?style=${genre}`,
     }),
 
     getArtistDetails: builder.query({
