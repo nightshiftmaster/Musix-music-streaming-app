@@ -5,6 +5,7 @@ import { setActiveSong, playPause } from "../redux/features/playerSlice";
 // import { useGetSongsByGenreQuery } from "../redux/services/testApiCore"; // api for tests
 import { useEffect, useState } from "react";
 import { useGetSongDetailsQuery } from "../redux/services/apiCore";
+import { BASE_API_URL } from "../assets/constants";
 
 const SongDetails = ({ setLink, link }) => {
   const dispatch = useDispatch();
@@ -37,7 +38,7 @@ const SongDetails = ({ setLink, link }) => {
   useEffect(() => {
     const fetchData = async () => {
       const responce = await fetch(
-        `http://localhost:3001/api/artists/topsongs/${songid}`
+        `${BASE_API_URL}/api/artists/topsongs/${songid}`
       );
       const data = await responce.json();
       data.length != 0 && setResult(data[0].topSongs.attributes);
