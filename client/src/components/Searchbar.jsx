@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { FiSearch } from "react-icons/fi";
 import { HiOutlineHome } from "react-icons/hi";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { searchData } from "../redux/features/apiSlice";
 import HistoryNavs from "./HistoryNavs";
 import { BASE_API_URL } from "../assets/constants";

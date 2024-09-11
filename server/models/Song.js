@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-// Define the schema for the song details
 const SongDetailsSchema = new Schema({
   style: { type: String, required: true },
   id: { type: String, required: true },
@@ -40,8 +39,6 @@ const SongDetailsSchema = new Schema({
   ],
   lyrics: [{ type: String }],
 });
-
-// Create a model from the schema
 
 module.exports =
   mongoose.models.Song || mongoose.model("Song", SongDetailsSchema);

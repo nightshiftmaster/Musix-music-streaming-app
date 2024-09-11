@@ -13,9 +13,6 @@ const SongBar = ({
   handlePlayClick,
 }) => {
   const navigate = useNavigate();
-  // const artistId = song?.artists
-  //   ? song?.artists[0]?.adamid
-  //   : song?.relationships?.artists?.data[0]?.id;
 
   const songImageUrl = song?.images
     ? song?.images?.coverart
@@ -40,7 +37,6 @@ const SongBar = ({
 
       <div className="flex-1 flex-col items-center justify-start overflow-hidden">
         <div className="flex-1 flex-col items-center justify-start mx-3">
-          {/* <Link to={`songs/${song.id}`}> */}
           <p
             className="font-semibold md:text-lg text-md text-white truncate hover:underline"
             onClick={() =>
@@ -49,7 +45,6 @@ const SongBar = ({
           >
             {songTitle}
           </p>
-          {/* </Link> */}
         </div>
         <div className=" flex-1 flex-col items-center justify-start mx-3 ">
           <Link to={`/artists/${artistId}`}>

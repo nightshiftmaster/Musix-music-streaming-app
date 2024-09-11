@@ -18,7 +18,6 @@ const RelatedSongs = ({
           const currArtistId = artistId
             ? artistId
             : song?.relationships?.artists.data[0].id;
-          // console.log(song?.relationships?.artists.data[0].id);
           return (
             <SongBar
               key={`${song.key}-${artistId}-${i}`}

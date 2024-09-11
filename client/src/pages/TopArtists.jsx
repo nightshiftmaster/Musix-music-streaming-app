@@ -1,9 +1,7 @@
 import { Error, Loader, ArtistCard } from "../components";
 import { useGetSongsByGenreQuery } from "../redux/services/apiCore"; // production api
 import { useSelector } from "react-redux";
-
 // import { useGetSongsByGenreQuery } from "../redux/services/testApiCore"; // tests api
-
 import _ from "lodash";
 
 import React from "react";
