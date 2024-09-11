@@ -1,5 +1,5 @@
-import { Loader, SongCard } from "../components";
-import { useEffect } from "react";
+import { Loader, SongCard, Error } from "../components";
+import { data as database } from "../assets/database";
 import { useSelector } from "react-redux";
 import { useGetSongsByGenreQuery } from "../redux/services/apiCore"; // production api
 // import { useGetSongsByGenreQuery } from "../redux/services/testApiCore"; // tests api
@@ -19,7 +19,7 @@ const Discover = () => {
     return <Loader title="Loading songs" />;
   }
   if (error) {
-    console.log("something went wrong");
+    return <Error />;
   }
 
   return (

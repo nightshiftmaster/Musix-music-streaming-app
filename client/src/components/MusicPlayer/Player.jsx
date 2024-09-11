@@ -11,9 +11,8 @@ const Player = ({
   onLoadedData,
   repeat,
 }) => {
-  const previewUrl = activeSong?.attributes
-    ? activeSong?.attributes?.previews[0]?.url
-    : activeSong?.hub?.actions[1]?.uri;
+  const previewUrl = activeSong?.attributes?.previews[0]?.url;
+
   const ref = useRef(null);
   // eslint-disable-next-line no-unused-expressions
   if (ref.current) {

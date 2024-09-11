@@ -7,20 +7,24 @@ const HistoryNavs = () => {
   const navigate = useNavigate();
   const { pathname } = location;
   const [history, setHistory] = useState(["/"]);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     setHistory((prev) => {
       if (prev.includes(pathname)) {
+        const index = prev.indexOf(pathname);
+        setCurrentIndex(index);
         return prev;
       }
-      const currHistory = [...prev, pathname];
 
-      return currHistory;
+      const newHistory = [...prev, pathname];
+      setCurrentIndex(newHistory.length - 1);
+      return newHistory;
     });
   }, [pathname]);
 
-  const stopGoBack = pathname === "/" && history[0] === "/";
-  const stopGoForward = history[history.length - 1] === pathname;
+  const stopGoBack = currentIndex === 0;
+  const stopGoForward = currentIndex === history.length - 1;
 
   return (
     <div className="gap-2 lg:flex hidden  justify-center items-center z-50">
@@ -40,10 +44,9 @@ const HistoryNavs = () => {
         <IoIosArrowBack
           className="flex justify-center items-center mt-[2px]"
           onClick={() => {
-            if (stopGoBack) {
-              return;
+            if (!stopGoBack) {
+              navigate(history[currentIndex - 1]);
             }
-            navigate(-1);
           }}
           color={stopGoBack ? "gray" : "white"}
           size="25"
@@ -65,8 +68,9 @@ const HistoryNavs = () => {
         <IoIosArrowForward
           className="flex justify-center items-center mt-[2px]"
           onClick={() => {
-            console.log(history);
-            navigate(+1);
+            if (!stopGoForward) {
+              navigate(history[currentIndex + 1]);
+            }
           }}
           color={stopGoForward ? "gray" : "white"}
           size="25"

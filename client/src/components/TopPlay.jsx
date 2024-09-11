@@ -4,12 +4,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper";
 import { playPause, setActiveSong } from "../redux/features/playerSlice";
-// import { useGetSongsByGenreQuery } from "../redux/services/shazamCore"; // api for production
+import { useGetSongsByGenreQuery } from "../redux/services/apiCore"; // api for production
 
-import {
-  useGetSongsByGenreQuery,
-  useGetSongsByCountryQuery,
-} from "../redux/services/testApiCore"; // api for tests
+// import {
+//   useGetSongsByGenreQuery,
+//   useGetSongsByCountryQuery,
+// } from "../redux/services/testApiCore"; // api for tests
 import { Error, Loader } from ".";
 
 import "swiper/css";
@@ -23,9 +23,9 @@ const TopPlay = ({ link, setLink }) => {
     (state) => state.player
   );
 
-  const { data, isFetching, error } =
-    useGetSongsByCountryQuery(countryCode) &&
-    useGetSongsByGenreQuery(genreListId || "POP");
+  const { data, isFetching, error } = useGetSongsByGenreQuery(
+    genreListId || "POP"
+  );
 
   const topPlays = data?.slice(0, 20);
 
@@ -74,7 +74,7 @@ const TopPlay = ({ link, setLink }) => {
           {topPlays?.map((song, i) => {
             return (
               <SwiperSlide
-                key={song?.attributes.name + i}
+                key={song?.id}
                 style={{ width: "25%", height: "auto" }}
                 className="shadow-lg rounded-full animate-slideright"
               >
@@ -91,11 +91,16 @@ const TopPlay = ({ link, setLink }) => {
             );
           }) || (
             <div className="flex">
-              {[1, 2, 3, 4].map((song, i) => (
-                <div className="shadow-lg rounded-full animate-slideright">
-                  <div className="bg-slate-400 animate-pulse h-16 w-16 rounded-full m-2"></div>
-                </div>
-              ))}
+              {[1, 2, 3, 4].map((song, i) => {
+                return (
+                  <div
+                    className="shadow-lg rounded-full animate-slideright"
+                    key={i}
+                  >
+                    <div className="bg-slate-400 animate-pulse h-16 w-16 rounded-full m-2"></div>
+                  </div>
+                );
+              })}
             </div>
           )}
         </Swiper>
@@ -115,7 +120,7 @@ const TopPlay = ({ link, setLink }) => {
         <div className="mt-4 flex flex-col gap-1 xl:h-screen xl:pb-80 overflow-x-hidden overflow-y-scroll hide-scrollbar">
           {topPlays?.map((song, i) => (
             <SongBar
-              key={`${song.key}-${song.artistId}-${i}`}
+              key={song.id}
               song={song}
               i={i}
               artistId={song?.relationships?.artists?.data[0].id}
@@ -127,7 +132,10 @@ const TopPlay = ({ link, setLink }) => {
           )) || (
             <div className="flex flex-col ">
               {[1, 2, 3, 4].map((song, i) => (
-                <div className="shadow-lg rounded-full animate-slideright">
+                <div
+                  className="shadow-lg rounded-full animate-slideright"
+                  key={i}
+                >
                   <div className="bg-slate-400 animate-pulse h-16 w-26 rounded-md m-2"></div>
                 </div>
               ))}

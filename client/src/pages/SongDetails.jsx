@@ -40,10 +40,10 @@ const SongDetails = ({ setLink, link }) => {
         `http://localhost:3001/api/artists/topsongs/${songid}`
       );
       const data = await responce.json();
-      setResult(data[0].topSongs.attributes);
-      setOpen(true);
+      data.length != 0 && setResult(data[0].topSongs.attributes);
     };
-    if (!song) fetchData();
+
+    fetchData();
   }, []);
 
   const handlePauseClick = () => {

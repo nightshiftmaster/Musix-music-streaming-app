@@ -3,6 +3,10 @@ const router = express.Router();
 const Song = require("./models/Song");
 const Artist = require("./models/Artist");
 
+router.post("/songs", (req, res) => {
+  Song.insertMany(req.body).then((song) => res.send(song));
+});
+
 router.get("/artists/topsongs/:songId", (req, res) => {
   const songId = req.params.songId;
   Artist.aggregate([

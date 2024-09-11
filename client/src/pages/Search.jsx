@@ -28,7 +28,7 @@ const Search = ({ setLink, link }) => {
 
   const songs = data?.topSongs[0].map((song) => song);
 
-  const artistId = data.id;
+  const artistId = data?.id;
 
   if (isError) return <Error title="Artist not exists" />;
 
@@ -54,7 +54,7 @@ const Search = ({ setLink, link }) => {
             i={i}
             isPlaying={isPlaying}
             activeSong={activeSong}
-            data={songs}
+            artistId={artistId}
           />
         ))}
       </div>

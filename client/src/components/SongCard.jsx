@@ -3,7 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import PlayPause from "./PlayPause";
 import { playPause, setActiveSong } from "../redux/features/playerSlice";
 
-const SongCard = ({ song, isPlaying, data, activeSong, i, discover }) => {
+const SongCard = ({
+  song,
+  isPlaying,
+  artistId,
+  data,
+  activeSong,
+  i,
+  discover,
+}) => {
   const dispatch = useDispatch();
   const handlePlayClick = () => {
     dispatch(setActiveSong({ song, data, i }));
@@ -54,7 +62,7 @@ const SongCard = ({ song, isPlaying, data, activeSong, i, discover }) => {
           </Link>
         </p>
         <p className="text-sm truncate text-gray-400 mt-1">
-          <Link to={`/artists/${song?.artists[0].id}`}>
+          <Link to={`/artists/${artistId ? artistId : song?.artists[0]?.id}`}>
             {song?.attributes ? song?.attributes?.artistName : song?.subtitle}
           </Link>
         </p>
