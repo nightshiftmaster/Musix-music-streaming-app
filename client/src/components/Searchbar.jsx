@@ -5,6 +5,7 @@ import { HiOutlineHome } from "react-icons/hi";
 import { useDispatch, useSelector } from "react-redux";
 import { searchData } from "../redux/features/apiSlice";
 import HistoryNavs from "./HistoryNavs";
+import { BASE_API_URL } from "../assets/constants";
 
 const Searchbar = ({ link, setLink }) => {
   const dispatch = useDispatch();
@@ -12,7 +13,6 @@ const Searchbar = ({ link, setLink }) => {
   const [input, setInput] = useState("");
   const [result, setResult] = useState("");
   const [isOpen, setOpen] = useState(false);
-  const { searchResults } = useSelector((state) => state.api);
 
   const currRef = useRef(null);
 
@@ -40,12 +40,9 @@ const Searchbar = ({ link, setLink }) => {
     }
 
     dispatch(searchData(input));
-    // setResult(data);
     setOpen(true);
     const fetchData = async () => {
-      const responce = await fetch(
-        `http://localhost:3001/api/artists/?q=${input}`
-      );
+      const responce = await fetch(`${BASE_API_URL}/api/artists/?q=${input}`);
       const data = await responce.json();
       setResult(data);
       setOpen(true);
