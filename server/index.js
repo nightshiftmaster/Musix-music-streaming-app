@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const apiRoutes = require("./api");
+const path = require("path");
 
 const PORT = process.env.PORT || 3001;
 
@@ -18,6 +19,10 @@ app.use("/api", apiRoutes);
 
 app.get("/", (req, res) => {
   res.redirect("/api");
+});
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "index.html"));
 });
 
 app.listen(PORT, () => {
