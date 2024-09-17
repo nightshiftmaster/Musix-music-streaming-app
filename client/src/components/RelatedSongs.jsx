@@ -18,10 +18,12 @@ const RelatedSongs = ({
           const currArtistId = artistId
             ? artistId
             : song?.relationships?.artists.data[0].id;
+          let songData = Array.isArray(song) ? song[0] : song;
+          console.log(song);
           return (
             <SongBar
               key={`${song.key}-${artistId}-${i}`}
-              song={song}
+              song={songData}
               i={i}
               artistId={currArtistId}
               isPlaying={isPlaying}

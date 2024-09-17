@@ -26,7 +26,7 @@ const Search = ({ setLink, link }) => {
 
   if (data?.length === 0) return;
 
-  const songs = data?.topSongs[0].map((song) => song);
+  const songs = data?.topSongs.map((song) => song[0]);
 
   const artistId = data?.id;
 

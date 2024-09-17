@@ -25,13 +25,15 @@ const ArtistDetails = ({ setLink, link }) => {
     error,
   } = useGetArtistDetailsQuery(artistId);
 
+  console.log(artist);
+
   if (isFetchingArtistDetails) {
     return <Loader title="Searching artist details" />;
   }
 
   if (error) return <Error />;
 
-  const topSongs = artist[0]?.topSongs[0];
+  const topSongs = artist[0]?.topSongs;
 
   const handlePauseClick = () => {
     dispatch(playPause(false));
