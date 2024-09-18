@@ -17,14 +17,16 @@ app.use(bodyParser.json());
 
 app.use("/api", apiRoutes);
 
-app.use(express.static(path.join(__dirname, "client", "dist", "build")));
+app.use(express.static(path.join(__dirname, "../client/dist"))); // Путь к собранным файлам фронтенда
 
+// Маршрут для корневой страницы
 app.get("/", (req, res) => {
-  res.redirect("/api");
+  res.sendFile(path.join(__dirname, "../client/dist", "index.html"));
 });
 
+// Перенаправление всех других маршрутов (для SPA) на index.html
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
+  res.sendFile(path.join(__dirname, "../client/dist", "index.html"));
 });
 
 app.listen(PORT, () => {
