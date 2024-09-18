@@ -17,12 +17,14 @@ app.use(bodyParser.json());
 
 app.use("/api", apiRoutes);
 
+app.use(express.static(path.join(__dirname, "client", "dist", "build")));
+
 app.get("/", (req, res) => {
   res.redirect("/api");
 });
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client", "index.html"));
+  res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
 });
 
 app.listen(PORT, () => {
