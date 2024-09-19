@@ -6,5 +6,11 @@
       "config": { "distDir": "build" }
     }
   ],
-  "rewrites": [{ "source": "/(.*)", "destination": "/" }]
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/" },
+    {
+      "source": "/api/(.*)",
+      "destination": "https://musix-music-streaming-app-server.vercel.app/api/$1"
+    }
+  ]
 }
