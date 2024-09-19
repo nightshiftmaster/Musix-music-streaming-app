@@ -31,7 +31,9 @@ const ArtistDetails = ({ setLink, link }) => {
     return <Loader title="Searching artist details" />;
   }
 
-  if (error) return <Error />;
+  if (error) {
+    return <Error />;
+  }
 
   const topSongs = artist[0]?.topSongs;
 

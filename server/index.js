@@ -21,7 +21,7 @@ app.use("/api", apiRoutes);
 //   res.redirect("/api");
 // });
 
-app.use(express.static(path.join(__dirname, "../client/build"))); // Путь к собранным файлам фронтенда
+app.use(express.static(path.join(__dirname, "../client/build")));
 
 // Маршрут для корневой страницы
 app.get("/", (req, res) => {
