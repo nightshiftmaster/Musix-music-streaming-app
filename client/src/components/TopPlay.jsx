@@ -5,7 +5,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper";
 import { playPause, setActiveSong } from "../redux/features/playerSlice";
 import { useGetSongsByGenreQuery } from "../redux/services/apiCore"; // api for production
-import { Error, Loader } from ".";
 
 // import {
 //   useGetSongsByGenreQuery,
@@ -37,13 +36,6 @@ const TopPlay = ({ link, setLink }) => {
   const handlePauseClick = () => {
     dispatch(playPause(false));
   };
-
-  if (isFetching) {
-    return <Loader title="Loading songs" />;
-  }
-  if (error) {
-    return <Error />;
-  }
 
   return (
     <div
