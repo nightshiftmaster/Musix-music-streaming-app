@@ -2,27 +2,21 @@
   "version": 2,
   "builds": [
     {
-      "src": "client/package.json",
+      "src": "public/**/*",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "client/build"
+        "distDir": "build"
       }
-    },
-    {
-      "src": "server/index.js",
-      "use": "@vercel/node"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "/server/index.js"
     }
   ],
   "rewrites": [
     {
+      "source": "/api/(.*)",
+      "destination": "https://musix-music-streaming-app-server.vercel.app/api/$1"
+    },
+    {
       "source": "/(.*)",
-      "destination": "/"
+      "destination": "/index.html"
     }
   ]
 }
