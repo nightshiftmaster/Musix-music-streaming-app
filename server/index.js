@@ -17,10 +17,6 @@ app.use(bodyParser.json());
 
 app.use("/api", apiRoutes);
 
-// app.get("/", (req, res) => {
-//   res.redirect("/api");
-// });
-
 app.listen(PORT, () => {
   console.log("Server has been started...");
 });

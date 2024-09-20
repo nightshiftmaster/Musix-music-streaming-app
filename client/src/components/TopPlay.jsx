@@ -5,12 +5,12 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper";
 import { playPause, setActiveSong } from "../redux/features/playerSlice";
 import { useGetSongsByGenreQuery } from "../redux/services/apiCore"; // api for production
+import { Error, Loader } from ".";
 
 // import {
 //   useGetSongsByGenreQuery,
 //   useGetSongsByCountryQuery,
 // } from "../redux/services/testApiCore"; // api for tests
-import { Error, Loader } from ".";
 
 import "swiper/css";
 import "swiper/css/free-mode";
@@ -38,12 +38,12 @@ const TopPlay = ({ link, setLink }) => {
     dispatch(playPause(false));
   };
 
-  // if (isFetching) {
-  //   return <Loader title="Loading songs" />;
-  // }
-  // if (error) {
-  //   return <Error />;
-  // }
+  if (isFetching) {
+    return <Loader title="Loading songs" />;
+  }
+  if (error) {
+    return <Error />;
+  }
 
   return (
     <div

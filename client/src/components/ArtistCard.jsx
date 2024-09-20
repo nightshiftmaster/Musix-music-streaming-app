@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
 const ArtistCard = ({ track }) => {
-  console.log(track);
   const navigate = useNavigate();
   return (
     <div
