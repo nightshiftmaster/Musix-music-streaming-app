@@ -7,7 +7,6 @@ import { playPause, setActiveSong } from "../redux/features/playerSlice";
 //   useGetArtistDetailsQuery,
 //   useGetSongsBySearchQuery,
 // } from "../redux/services/apiCore"; // tests api
-import { useEffect, useState } from "react";
 
 const ArtistDetails = ({ setLink, link }) => {
   const dispatch = useDispatch();

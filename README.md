@@ -1,5 +1,3 @@
-<!-- <a href="https://codeclimate.com/github/nightshiftmaster/musix/maintainability"><img src="https://api.codeclimate.com/v1/badges/48a443769e7374516aad/maintainability" /></a> -->
-
 # Musix
 
 Welcome to Musix, a web application that lets users explore the latest and greatest in modern music! Musix offers a range of features for users to discover music by genres, artists, and charts, as well as search for tracks by their favorite artists. The application is fully responsive, ensuring a smooth experience on both desktop browsers and mobile devices.

@@ -1,5 +1,4 @@
 import { Loader, SongCard, Error } from "../components";
-import { data as database } from "../assets/database";
 import { useSelector } from "react-redux";
 import { useGetSongsByGenreQuery } from "../redux/services/apiCore"; // production api
 // import { useGetSongsByGenreQuery } from "../redux/services/testApiCore"; // tests api
