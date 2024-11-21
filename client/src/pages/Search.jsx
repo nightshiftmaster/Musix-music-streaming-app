@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { Error, Loader, SongCard } from "../components";
 import { useGetArtistBySearchQuery } from "../redux/services/apiCore"; // production api
 // import { useGetSongsBySearchQuery } from "../redux/services/testApiCore"; // test api
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import React from "react";
 import { Link } from "react-router-dom";
 
