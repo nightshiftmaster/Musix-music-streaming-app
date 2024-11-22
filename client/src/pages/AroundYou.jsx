@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Error, Loader, SongCard } from "../components";
 import { useGetSongsByGenreQuery } from "../redux/services/apiCore"; // production api
@@ -10,7 +10,6 @@ import { FreeMode } from "swiper";
 import React from "react";
 
 const AroundYou = () => {
-  const [country, setCountry] = useState("");
   const dispatch = useDispatch();
   const { activeSong, isPlaying } = useSelector((state) => state.player);
 
