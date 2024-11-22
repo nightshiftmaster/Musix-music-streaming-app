@@ -116,10 +116,6 @@ after(async function () {
   }
 });
 
-// beforeEach(async function () {
-//   await Song.deleteMany({});
-// });
-
 describe("API Routes", function () {
   it("should get song by style", async function () {
     await song.save();
